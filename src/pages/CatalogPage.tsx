@@ -7,6 +7,7 @@ import type {
   Vehicle,
   VehicleCategory,
 } from "../types/vehicle";
+import "./CatalogPage.css";
 
 type SortOption = "price-asc" | "price-desc" | "year-desc";
 
@@ -80,28 +81,32 @@ export function CatalogPage() {
 
   if (isLoading) {
     return (
-      <main>
-        <p>Cargando vehículos...</p>
+      <main className="catalog-page">
+        <div className="catalog-loading">
+          <p>Cargando vehículos...</p>
+        </div>
       </main>
     );
   }
 
   if (error) {
     return (
-      <main>
-        <p>{error}</p>
+      <main className="catalog-page">
+        <div className="catalog-error">
+          <p>{error}</p>
 
-        <button type="button" onClick={handleRetry}>
-          Intentar nuevamente
-        </button>
+          <button type="button" onClick={handleRetry}>
+            Intentar nuevamente
+          </button>
+        </div>
       </main>
     );
   }
 
   return (
-    <main>
-      <header>
-        <p>Catálogo</p>
+    <main className="catalog-page">
+      <header className="catalog-header">
+        <p className="catalog-eyebrow">Catálogo de vehículos</p>
 
         <h1>Encuentra el vehículo ideal para ti</h1>
 
@@ -121,7 +126,7 @@ export function CatalogPage() {
       />
 
       <section aria-live="polite">
-        <p>
+        <p className="catalog-results">
           {filteredVehicles.length}{" "}
           {filteredVehicles.length === 1
             ? "vehículo encontrado"
@@ -129,7 +134,7 @@ export function CatalogPage() {
         </p>
 
         {filteredVehicles.length === 0 ? (
-          <div>
+          <div className="catalog-empty">
             <h2>No encontramos vehículos</h2>
 
             <p>
@@ -138,7 +143,7 @@ export function CatalogPage() {
             </p>
           </div>
         ) : (
-          <div>
+          <div className="catalog-grid">
             {filteredVehicles.map((vehicle) => (
               <VehicleCard
                 key={vehicle.id}
