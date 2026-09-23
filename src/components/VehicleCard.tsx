@@ -1,4 +1,5 @@
 import type { Vehicle } from "../types/vehicle";
+import { formatVehiclePrice } from "../utils/formatVehiclePrice";
 
 interface VehicleCardProps {
   vehicle: Vehicle;
@@ -43,12 +44,12 @@ export function VehicleCard({
 
           <div>
             <dt>Transmisión</dt>
-            <dd>{vehicle.transmission}</dd>
+            <dd>{vehicle.transmissions.join(" / ")}</dd>
           </div>
         </dl>
 
         <strong>
-          ${vehicle.price.toLocaleString("en-US")}
+          {formatVehiclePrice(vehicle.priceFrom, vehicle.priceTo)}
         </strong>
 
         <button

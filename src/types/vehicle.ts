@@ -31,9 +31,10 @@ export interface Vehicle {
   model: string;
   year: number;
   category: VehicleCategory;
-  price: number;
+  priceFrom: number;
+  priceTo?: number;
   fuelType: FuelType;
-  transmission: "Automática" | "Manual";
+  transmissions: ("Automática" | "Manual")[];
   seats: number;
   engine: string;
   description: string;

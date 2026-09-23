@@ -3,6 +3,7 @@ import { getVehicleById } from "../services/vehicleService";
 import { VehicleRequestForm } from "../components/VehicleRequestForm";
 import { useEffect, useState } from "react";
 import type { Vehicle } from "../types/vehicle";
+import { formatVehiclePrice } from "../utils/formatVehiclePrice";
 
 export function VehicleDetailPage() {
   const { id } = useParams();
@@ -63,7 +64,8 @@ useEffect(() => {
 
       <p><strong>Año:</strong> {vehicle.year}</p>
       <p><strong>Categoría:</strong> {vehicle.category}</p>
-      <p><strong>Precio:</strong> ${vehicle.price.toLocaleString()}</p>
+      <p><strong>Precio:</strong> {formatVehiclePrice(vehicle.priceFrom, vehicle.priceTo)}</p>
+      <p><strong>Transmisión:</strong> {vehicle.transmissions.join(" / ")}</p>
       <p>{vehicle.description}</p>
 
     <VehicleRequestForm vehicleId={vehicle.id} />

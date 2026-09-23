@@ -60,11 +60,11 @@ export function CatalogPage() {
 
     return [...result].sort((a, b) => {
       if (sort === "price-asc") {
-        return a.price - b.price;
+        return a.priceFrom - b.priceFrom;
       }
 
       if (sort === "price-desc") {
-        return b.price - a.price;
+        return b.priceFrom - a.priceFrom;
       }
 
       return b.year - a.year;
