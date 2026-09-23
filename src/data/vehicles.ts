@@ -1,12 +1,16 @@
 import type { Vehicle } from "../types/vehicle";
+import { hilux24Media, hilux28Media, hiluxGrMedia } from "./vehicleMedia";
+import hilux24CatalogImage from "../assets/vehicles/pickup/hilux-2-4/colors/camioneta-hilux-2-4-color-blanco-casa-pellas-nicaragua.webp";
+import hilux28CatalogImage from "../assets/vehicles/pickup/hilux-2-8/colors/camioneta-hilux-2-8-color-blanco-casa-pellas-nicaragua.webp";
+import hiluxGrCatalogImage from "../assets/vehicles/pickup/hilux-gr/colors/hilux-gr-sport-360-5-img-01.webp";
 
 export const vehicles: Vehicle[] = [
   {
-    id: "suv-001",
-    brand: "Nova",
-    model: "X5",
+    id: "toyota-hilux-2-8",
+    brand: "Toyota",
+    model: "Hilux 2.8",
     year: 2026,
-    category: "SUV",
+    category: "Pickup",
     price: 38900,
     fuelType: "Gasolina",
     transmission: "Automática",
@@ -14,14 +18,14 @@ export const vehicles: Vehicle[] = [
     engine: "2.0L Turbo",
     description:
       "SUV moderna y versátil, diseñada para ofrecer comodidad, tecnología y seguridad tanto en ciudad como en carretera.",
-    image:
-      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80",
+    image: hilux28CatalogImage,
+    media: hilux28Media,
     featured: true,
   },
   {
-    id: "pickup-001",
-    brand: "Terra",
-    model: "T9",
+    id: "toyota-hilux-2-4",
+    brand: "Toyota",
+    model: "Hilux 2.4",
     year: 2026,
     category: "Pickup",
     price: 45900,
@@ -31,8 +35,8 @@ export const vehicles: Vehicle[] = [
     engine: "2.8L Turbo Diésel",
     description:
       "Pickup robusta con gran capacidad de carga, preparada para el trabajo y las aventuras fuera de la ciudad.",
-    image:
-      "https://images.unsplash.com/photo-1559416523-140ddc3d238c?auto=format&fit=crop&w=1200&q=80",
+    image: hilux24CatalogImage,
+    media: hilux24Media,
     featured: true,
   },
   {
@@ -70,11 +74,11 @@ export const vehicles: Vehicle[] = [
     featured: false,
   },
   {
-    id: "hybrid-001",
-    brand: "Nova",
-    model: "E7 Hybrid",
+    id: "toyota-hilux-gr",
+    brand: "Toyota",
+    model: "Hilux GR",
     year: 2026,
-    category: "SUV",
+    category: "Pickup",
     price: 42500,
     fuelType: "Híbrido",
     transmission: "Automática",
@@ -82,8 +86,8 @@ export const vehicles: Vehicle[] = [
     engine: "2.0L Hybrid",
     description:
       "SUV híbrida que combina eficiencia, tecnología y confort para una conducción moderna.",
-    image:
-      "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1200&q=80",
+    image: hiluxGrCatalogImage,
+    media: hiluxGrMedia,
     featured: true,
   },
   {
