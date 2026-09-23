@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logoCasaPellas from "../assets/brand/logo-casa-pellas-version-azul.webp";
 import "./Header.css";
+import type { Currency } from "../types/currency";
 
-export function Header() {
+interface HeaderProps {
+  currency: Currency;
+  onCurrencyChange: (currency: Currency) => void;
+}
+
+export function Header({ currency, onCurrencyChange }: HeaderProps) {
   const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
@@ -72,6 +78,19 @@ export function Header() {
             </li>
           </ul>
         </nav>
+        <label className="site-header__currency">
+          <span>Moneda</span>
+          <select
+            value={currency}
+            onChange={(event) => {
+              const value = event.target.value;
+              if (value === "NIO" || value === "USD") onCurrencyChange(value);
+            }}
+          >
+            <option value="NIO">C$ NIO</option>
+            <option value="USD">$ USD</option>
+          </select>
+        </label>
       </div>
     </header>
   );

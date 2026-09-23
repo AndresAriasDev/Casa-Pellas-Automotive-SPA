@@ -8,10 +8,11 @@ import type {
   VehicleCategory,
 } from "../types/vehicle";
 import "./CatalogPage.css";
+import type { Currency } from "../types/currency";
 
 type SortOption = "price-asc" | "price-desc" | "year-desc";
 
-export function CatalogPage() {
+export function CatalogPage({ currency }: { currency: Currency }) {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] =
@@ -148,6 +149,7 @@ export function CatalogPage() {
               <VehicleCard
                 key={vehicle.id}
                 vehicle={vehicle}
+                currency={currency}
                 onViewDetails={handleViewDetails}
               />
             ))}

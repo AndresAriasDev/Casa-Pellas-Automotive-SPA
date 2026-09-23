@@ -1,12 +1,15 @@
 import type { Vehicle } from "../types/vehicle";
+import type { Currency } from "../types/currency";
 import { formatVehiclePrice } from "../utils/formatVehiclePrice";
 
 interface VehicleCardProps {
+  currency: Currency;
   vehicle: Vehicle;
   onViewDetails: (vehicleId: string) => void;
 }
 
 export function VehicleCard({
+  currency,
   vehicle,
   onViewDetails,
 }: VehicleCardProps) {
@@ -49,7 +52,7 @@ export function VehicleCard({
         </dl>
 
         <strong>
-          {formatVehiclePrice(vehicle.priceFrom, vehicle.priceTo)}
+          {formatVehiclePrice(vehicle.priceFrom, vehicle.priceTo, currency)}
         </strong>
 
         <button

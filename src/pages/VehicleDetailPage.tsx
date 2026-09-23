@@ -3,9 +3,10 @@ import { getVehicleById } from "../services/vehicleService";
 import { VehicleRequestForm } from "../components/VehicleRequestForm";
 import { useEffect, useState } from "react";
 import type { Vehicle } from "../types/vehicle";
+import type { Currency } from "../types/currency";
 import { formatVehiclePrice } from "../utils/formatVehiclePrice";
 
-export function VehicleDetailPage() {
+export function VehicleDetailPage({ currency }: { currency: Currency }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
@@ -64,7 +65,7 @@ useEffect(() => {
 
       <p><strong>Año:</strong> {vehicle.year}</p>
       <p><strong>Categoría:</strong> {vehicle.category}</p>
-      <p><strong>Precio:</strong> {formatVehiclePrice(vehicle.priceFrom, vehicle.priceTo)}</p>
+      <p><strong>Precio:</strong> {formatVehiclePrice(vehicle.priceFrom, vehicle.priceTo, currency)}</p>
       <p><strong>Transmisión:</strong> {vehicle.transmissions.join(" / ")}</p>
       <p>{vehicle.description}</p>
 
