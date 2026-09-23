@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { VehicleCard } from "../components/VehicleCard";
 import { VehicleFilters } from "../components/VehicleFilters";
-import { useNavigate } from "react-router-dom";
 import { getVehicles } from "../services/vehicleService";
 import type {
   Vehicle,
@@ -13,12 +13,14 @@ type SortOption = "price-asc" | "price-desc" | "year-desc";
 export function CatalogPage() {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [search, setSearch] = useState("");
-  const navigate = useNavigate();
   const [category, setCategory] =
     useState<VehicleCategory | "Todos">("Todos");
   const [sort, setSort] = useState<SortOption>("price-asc");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadVehicles = async () => {
@@ -37,7 +39,7 @@ export function CatalogPage() {
     };
 
     void loadVehicles();
-  }, []);
+  }, [reloadKey]);
 
   const filteredVehicles = useMemo(() => {
     const normalizedSearch = search.trim().toLowerCase();
@@ -72,6 +74,10 @@ export function CatalogPage() {
     navigate(`/vehicle/${vehicleId}`);
   };
 
+  const handleRetry = () => {
+    setReloadKey((current) => current + 1);
+  };
+
   if (isLoading) {
     return (
       <main>
@@ -84,7 +90,10 @@ export function CatalogPage() {
     return (
       <main>
         <p>{error}</p>
-        <button type="button">Intentar nuevamente</button>
+
+        <button type="button" onClick={handleRetry}>
+          Intentar nuevamente
+        </button>
       </main>
     );
   }
@@ -93,7 +102,9 @@ export function CatalogPage() {
     <main>
       <header>
         <p>Catálogo</p>
+
         <h1>Encuentra el vehículo ideal para ti</h1>
+
         <p>
           Explora nuestro catálogo y encuentra una opción que se
           adapte a tu estilo de vida.
@@ -120,6 +131,7 @@ export function CatalogPage() {
         {filteredVehicles.length === 0 ? (
           <div>
             <h2>No encontramos vehículos</h2>
+
             <p>
               Intenta cambiar tu búsqueda o seleccionar otra
               categoría.

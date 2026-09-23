@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getVehicleById } from "../services/vehicleService";
 import { VehicleRequestForm } from "../components/VehicleRequestForm";
 import { useEffect, useState } from "react";
@@ -6,7 +6,7 @@ import type { Vehicle } from "../types/vehicle";
 
 export function VehicleDetailPage() {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -46,6 +46,12 @@ useEffect(() => {
 
   return (
     <main>
+            <button
+        type="button"
+        onClick={() => navigate("/")}
+        >
+        ← Volver al catálogo
+        </button>
       <h1>
         {vehicle.brand} {vehicle.model}
       </h1>
