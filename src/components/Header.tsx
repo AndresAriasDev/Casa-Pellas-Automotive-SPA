@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logoCasaPellas from "../assets/brand/logo-casa-pellas-version-azul.webp";
 import "./Header.css";
 import type { Currency } from "../types/currency";
@@ -10,6 +10,7 @@ interface HeaderProps {
 }
 
 export function Header({ currency, onCurrencyChange }: HeaderProps) {
+  const { pathname } = useLocation();
   const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export function Header({ currency, onCurrencyChange }: HeaderProps) {
 
   return (
     <header
-      className={`site-header${isHidden ? " site-header--hidden" : ""}`}
+      className={`site-header${pathname === "/" ? " site-header--overlay" : ""}${isHidden ? " site-header--hidden" : ""}`}
       onFocusCapture={() => setIsHidden(false)}
     >
       <div className="site-header__surface">

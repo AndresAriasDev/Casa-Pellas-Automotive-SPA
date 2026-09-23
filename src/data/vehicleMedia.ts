@@ -1,6 +1,6 @@
 import type { VehicleMedia } from "../types/vehicle";
 
-import hero from "../assets/vehicles/pickup/hilux-2-4/hero/hilux-2-4-color-blanco-hero.png";
+import hero from "../assets/vehicles/pickup/hilux-2-4/hero/img-toyota-portada-2-4.png";
 import logo from "../assets/vehicles/pickup/hilux-2-4/logo/logo-hilux-2-4.webp";
 import blanco from "../assets/vehicles/pickup/hilux-2-4/colors/camioneta-hilux-2-4-color-blanco-casa-pellas-nicaragua.webp";
 import gris from "../assets/vehicles/pickup/hilux-2-4/colors/camioneta-hilux-2-4-color-gris-casa-pellas-nicaragua.webp";
@@ -26,7 +26,7 @@ import interior8 from "../assets/vehicles/pickup/hilux-2-4/gallery/camioneta-hil
 import interior9 from "../assets/vehicles/pickup/hilux-2-4/gallery/camioneta-hilux-2-4-interior-09.webp";
 import video from "../assets/vehicles/pickup/hilux-2-4/video/CASA-PELLAS_TOYOTA-HILUX-V1_1.mp4";
 
-import hilux28Hero from "../assets/vehicles/pickup/hilux-2-8/hero/Hilux2_8_featureImage.webp";
+import hilux28Hero from "../assets/vehicles/pickup/hilux-2-8/hero/img-toyota-portada-2-8.png";
 import hilux28Logo from "../assets/vehicles/pickup/hilux-2-8/logo/logo-hulux-2-8.webp";
 import hilux28Video from "../assets/vehicles/pickup/hilux-2-8/video/hilux-2-8.mp4";
 import hilux28blanco from "../assets/vehicles/pickup/hilux-2-8/colors/camioneta-hilux-2-8-color-blanco-casa-pellas-nicaragua.webp";
@@ -43,7 +43,7 @@ import hilux28Gallery6 from "../assets/vehicles/pickup/hilux-2-8/gallery/HILUX-2
 import hilux28Gallery7 from "../assets/vehicles/pickup/hilux-2-8/gallery/HILUX-2_8-TOYOTACP-24.webp";
 import hilux28Gallery8 from "../assets/vehicles/pickup/hilux-2-8/gallery/HILUX-2_8-TOYOTACP-25.webp";
 import hilux28Gallery9 from "../assets/vehicles/pickup/hilux-2-8/gallery/HILUX-2_8-TOYOTACP-29.webp";
-import hiluxGrHero from "../assets/vehicles/pickup/hilux-gr/hero/hilux-gr-toyota-hero.webp";
+import hiluxGrHero from "../assets/vehicles/pickup/hilux-gr/hero/img-toyota-portada-gr.png";
 import hiluxGrLogo from "../assets/vehicles/pickup/hilux-gr/logo/logo-hilux-gr.webp";
 import hiluxGrVideo from "../assets/vehicles/pickup/hilux-gr/video/toyota-gr-casapellas.mp4";
 import hiluxGrdisponible from "../assets/vehicles/pickup/hilux-gr/colors/hilux-gr-sport-360-5-img-01.webp";

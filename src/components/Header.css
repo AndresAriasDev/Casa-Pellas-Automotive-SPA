@@ -94,6 +94,12 @@
   font-weight: var(--font-weight-semibold);
 }
 
+.site-header.site-header--overlay {
+  position: fixed;
+  inset-inline: 0;
+  margin: 0 auto;
+}
+
 .site-header__currency select {
   min-height: 44px;
   padding: var(--space-2) var(--space-3);

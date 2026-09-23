@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { VehicleCard } from "../components/VehicleCard";
+import { VehicleHero } from "../components/VehicleHero";
 import { VehicleFilters } from "../components/VehicleFilters";
 import { getVehicles } from "../services/vehicleService";
 import type {
@@ -105,7 +106,9 @@ export function CatalogPage({ currency }: { currency: Currency }) {
   }
 
   return (
-    <main className="catalog-page">
+    <main>
+      <VehicleHero vehicles={vehicles} currency={currency} />
+      <div className="catalog-page">
       <header className="catalog-header">
         <p className="catalog-eyebrow">Catálogo de vehículos</p>
 
@@ -156,6 +159,7 @@ export function CatalogPage({ currency }: { currency: Currency }) {
           </div>
         )}
       </section>
+      </div>
     </main>
   );
 }
