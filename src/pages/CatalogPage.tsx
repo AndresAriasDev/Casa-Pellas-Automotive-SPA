@@ -109,17 +109,6 @@ export function CatalogPage({ currency }: { currency: Currency }) {
     <main>
       <VehicleHero vehicles={vehicles} currency={currency} />
       <div className="catalog-page">
-      <header className="catalog-header">
-        <p className="catalog-eyebrow">Catálogo de vehículos</p>
-
-        <h1>Encuentra el vehículo ideal para ti</h1>
-
-        <p>
-          Explora nuestro catálogo y encuentra una opción que se
-          adapte a tu estilo de vida.
-        </p>
-      </header>
-
       <VehicleFilters
         search={search}
         category={category}
