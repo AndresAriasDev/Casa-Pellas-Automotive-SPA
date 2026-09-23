@@ -1,0 +1,67 @@
+import { useParams } from "react-router-dom";
+import { getVehicleById } from "../services/vehicleService";
+import { useEffect, useState } from "react";
+import type { Vehicle } from "../types/vehicle";
+
+export function VehicleDetailPage() {
+  const { id } = useParams();
+
+  const [vehicle, setVehicle] = useState<Vehicle | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+useEffect(() => {
+  const loadVehicle = async () => {
+    if (!id) {
+      setVehicle(null);
+      setIsLoading(false);
+      return;
+    }
+
+    const selectedVehicle = await getVehicleById(id);
+
+    setVehicle(selectedVehicle ?? null);
+    setIsLoading(false);
+  };
+
+  void loadVehicle();
+}, [id]);
+
+  if (isLoading) {
+    return (
+      <main>
+        <p>Cargando vehículo...</p>
+      </main>
+    );
+  }
+
+  if (!vehicle) {
+    return (
+      <main>
+        <h1>Vehículo no encontrado</h1>
+        <p>El vehículo solicitado no existe.</p>
+      </main>
+    );
+  }
+
+  return (
+    <main>
+      <h1>
+        {vehicle.brand} {vehicle.model}
+      </h1>
+
+      <img
+        src={vehicle.image}
+        alt={`${vehicle.brand} ${vehicle.model}`}
+      />
+
+      <p><strong>Año:</strong> {vehicle.year}</p>
+      <p><strong>Categoría:</strong> {vehicle.category}</p>
+      <p><strong>Precio:</strong> ${vehicle.price.toLocaleString()}</p>
+      <p>{vehicle.description}</p>
+
+      <button type="button">
+        Solicitar cotización
+      </button>
+    </main>
+  );
+}

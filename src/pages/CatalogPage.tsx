@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { VehicleCard } from "../components/VehicleCard";
 import { VehicleFilters } from "../components/VehicleFilters";
+import { useNavigate } from "react-router-dom";
 import { getVehicles } from "../services/vehicleService";
 import type {
   Vehicle,
@@ -12,6 +13,7 @@ type SortOption = "price-asc" | "price-desc" | "year-desc";
 export function CatalogPage() {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   const [category, setCategory] =
     useState<VehicleCategory | "Todos">("Todos");
   const [sort, setSort] = useState<SortOption>("price-asc");
@@ -67,7 +69,7 @@ export function CatalogPage() {
   }, [vehicles, search, category, sort]);
 
   const handleViewDetails = (vehicleId: string) => {
-    console.log(`View vehicle: ${vehicleId}`);
+    navigate(`/vehicle/${vehicleId}`);
   };
 
   if (isLoading) {
