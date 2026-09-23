@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { getVehicleById } from "../services/vehicleService";
+import { VehicleRequestForm } from "../components/VehicleRequestForm";
 import { useEffect, useState } from "react";
 import type { Vehicle } from "../types/vehicle";
 
@@ -59,9 +60,7 @@ useEffect(() => {
       <p><strong>Precio:</strong> ${vehicle.price.toLocaleString()}</p>
       <p>{vehicle.description}</p>
 
-      <button type="button">
-        Solicitar cotización
-      </button>
+    <VehicleRequestForm vehicleId={vehicle.id} />
     </main>
   );
 }
