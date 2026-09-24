@@ -1,10 +1,36 @@
 import type { Vehicle } from "../types/vehicle";
-import { hilux24Media, hilux28Media, hiluxGrMedia } from "./vehicleMedia";
+import { hilux24Media, hilux28Media, hiluxGrMedia, tundraMedia, landCruiserMedia } from "./vehicleMedia";
+import tundraCatalogImage from "../assets/vehicles/pickup/tundra/colors/tundra-portada.png";
+import landCruiserCatalogImage from "../assets/vehicles/pickup/land-cruiser/colors/land-cruiser-portada.png";
 import hilux24CatalogImage from "../assets/vehicles/pickup/hilux-2-4/colors/camioneta-hilux-2-4-color-blanco-casa-pellas-nicaragua.webp";
 import hilux28CatalogImage from "../assets/vehicles/pickup/hilux-2-8/colors/camioneta-hilux-2-8-color-blanco-casa-pellas-nicaragua.webp";
-import hiluxGrCatalogImage from "../assets/vehicles/pickup/hilux-gr/colors/hilux-gr-sport-360-5-img-01.webp";
+import hiluxGrCatalogImage from "../assets/vehicles/pickup/hilux-gr/colors/img-toyota-portada-gr.jpg";
 
 export const vehicles: Vehicle[] = [
+  {
+    id: "toyota-tundra",
+    brand: "Toyota",
+    model: "Tundra",
+    category: "Pickup",
+    priceFrom: 3076441,
+    transmissions: [],
+    description: "Consulta más información sobre la Toyota Tundra.",
+    image: tundraCatalogImage,
+    media: tundraMedia,
+    featured: false,
+  },
+  {
+    id: "toyota-land-cruiser",
+    brand: "Toyota",
+    model: "Land Cruiser",
+    category: "Pickup",
+    priceFrom: 1739654,
+    transmissions: [],
+    description: "Consulta más información sobre la Toyota Land Cruiser.",
+    image: landCruiserCatalogImage,
+    media: landCruiserMedia,
+    featured: false,
+  },
   {
     id: "toyota-hilux-2-8",
     brand: "Toyota",
@@ -40,40 +66,6 @@ export const vehicles: Vehicle[] = [
     featured: true,
   },
   {
-    id: "sedan-001",
-    brand: "Nova",
-    model: "S4",
-    year: 2026,
-    category: "Sedán",
-    priceFrom: 27900,
-    fuelType: "Gasolina",
-    transmissions: ["Automática"],
-    seats: 5,
-    engine: "1.8L",
-    description:
-      "Sedán elegante y eficiente, con tecnología enfocada en una experiencia cómoda para el uso diario.",
-    image:
-      "https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1200&q=80",
-    featured: false,
-  },
-  {
-    id: "hatch-001",
-    brand: "Urban",
-    model: "U2",
-    year: 2026,
-    category: "Hatchback",
-    priceFrom: 21900,
-    fuelType: "Gasolina",
-    transmissions: ["Manual"],
-    seats: 5,
-    engine: "1.5L",
-    description:
-      "Compacto, práctico y eficiente. Una alternativa ideal para moverse con facilidad por la ciudad.",
-    image:
-      "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80",
-    featured: false,
-  },
-  {
     id: "toyota-hilux-gr",
     brand: "Toyota",
     model: "Hilux GR",
@@ -89,22 +81,5 @@ export const vehicles: Vehicle[] = [
     image: hiluxGrCatalogImage,
     media: hiluxGrMedia,
     featured: true,
-  },
-  {
-    id: "pickup-002",
-    brand: "Terra",
-    model: "T7",
-    year: 2025,
-    category: "Pickup",
-    priceFrom: 36900,
-    fuelType: "Diésel",
-    transmissions: ["Manual"],
-    seats: 5,
-    engine: "2.4L Turbo Diésel",
-    description:
-      "Pickup funcional y resistente, pensada para quienes necesitan capacidad y confiabilidad todos los días.",
-    image:
-      "https://images.unsplash.com/photo-1592805723127-004c4f7b4a9d?auto=format&fit=crop&w=1200&q=80",
-    featured: false,
   },
 ];

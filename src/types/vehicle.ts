@@ -29,14 +29,14 @@ export interface Vehicle {
   id: string;
   brand: string;
   model: string;
-  year: number;
+  year?: number;
   category: VehicleCategory;
   priceFrom: number;
   priceTo?: number;
-  fuelType: FuelType;
+  fuelType?: FuelType;
   transmissions: ("Automática" | "Manual")[];
-  seats: number;
-  engine: string;
+  seats?: number;
+  engine?: string;
   description: string;
   image: string;
   featured: boolean;

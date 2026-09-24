@@ -69,7 +69,7 @@ export function CatalogPage({ currency }: { currency: Currency }) {
         return b.priceFrom - a.priceFrom;
       }
 
-      return b.year - a.year;
+      return (b.year ?? 0) - (a.year ?? 0);
     });
   }, [vehicles, search, category, sort]);
 

@@ -63,10 +63,10 @@ useEffect(() => {
         alt={`${vehicle.brand} ${vehicle.model}`}
       />
 
-      <p><strong>Año:</strong> {vehicle.year}</p>
+      <p><strong>Año:</strong> {vehicle.year ?? "Por confirmar"}</p>
       <p><strong>Categoría:</strong> {vehicle.category}</p>
       <p><strong>Precio:</strong> {formatVehiclePrice(vehicle.priceFrom, vehicle.priceTo, currency)}</p>
-      <p><strong>Transmisión:</strong> {vehicle.transmissions.join(" / ")}</p>
+      <p><strong>Transmisión:</strong> {vehicle.transmissions.join(" / ") || "Por confirmar"}</p>
       <p>{vehicle.description}</p>
 
     <VehicleRequestForm vehicleId={vehicle.id} />

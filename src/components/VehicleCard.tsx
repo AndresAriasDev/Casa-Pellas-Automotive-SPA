@@ -1,6 +1,7 @@
 import type { Vehicle } from "../types/vehicle";
 import type { Currency } from "../types/currency";
 import { formatVehiclePrice } from "../utils/formatVehiclePrice";
+import "./VehicleCard.css";
 
 interface VehicleCardProps {
   currency: Currency;
@@ -13,53 +14,56 @@ export function VehicleCard({
   vehicle,
   onViewDetails,
 }: VehicleCardProps) {
+  const logo = vehicle.media?.logo;
+  const badges = vehicle.fuelType === "Híbrido" ? ["Híbrido"] : [];
+
   return (
-    <article>
-      <img
+    <article className="vehicle-card">
+      <div className="vehicle-card__image">
+        <img
         src={vehicle.image}
         alt={`${vehicle.brand} ${vehicle.model}`}
+        loading="lazy"
+        decoding="async"
       />
+          <div className="vehicle-card__logo">
+            {logo ? (
+              <img src={logo.src} alt={logo.alt} loading="lazy" decoding="async" />
+            ) : (
+              <span>{vehicle.brand}</span>
+            )}
+          </div>
+      </div>
 
-      <div>
-        <span>{vehicle.category}</span>
+      <div className="vehicle-card__content">
+          {badges.length > 0 && (
+            <ul className="vehicle-card__badges" aria-label="Características destacadas">
+              {badges.map((badge) => (
+                <li className="vehicle-card__badge" key={badge}>{badge}</li>
+              ))}
+            </ul>
+          )}
 
-        <h2>
+        <h2 className="vehicle-card__title">
           {vehicle.brand} {vehicle.model}
         </h2>
 
-        <p>{vehicle.description}</p>
-
-        <dl>
-          <div>
-            <dt>Año</dt>
-            <dd>{vehicle.year}</dd>
-          </div>
-
-          <div>
-            <dt>Motor</dt>
-            <dd>{vehicle.engine}</dd>
-          </div>
-
-          <div>
-            <dt>Combustible</dt>
-            <dd>{vehicle.fuelType}</dd>
-          </div>
-
-          <div>
-            <dt>Transmisión</dt>
-            <dd>{vehicle.transmissions.join(" / ")}</dd>
-          </div>
-        </dl>
-
-        <strong>
+        <div className="vehicle-card__price">
+          <span className="vehicle-card__price-label">
+            {vehicle.priceTo !== undefined && vehicle.priceTo !== vehicle.priceFrom ? "Rango de precios" : "Precio desde"}
+          </span>
+          <strong>
           {formatVehiclePrice(vehicle.priceFrom, vehicle.priceTo, currency)}
-        </strong>
+          </strong>
+        </div>
 
         <button
+          className="vehicle-card__cta"
           type="button"
+          aria-label={`Ver detalles de ${vehicle.brand} ${vehicle.model}`}
           onClick={() => onViewDetails(vehicle.id)}
         >
-          Ver detalles
+          Ver detalles <span aria-hidden="true">↗</span>
         </button>
       </div>
     </article>

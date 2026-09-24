@@ -1,4 +1,70 @@
 import type { VehicleMedia } from "../types/vehicle";
+import tundraHero from "../assets/vehicles/pickup/tundra/hero/toyota-tundra-portada-banner.webp";
+import tundraLogo from "../assets/vehicles/pickup/tundra/logo/logo-tundra.webp";
+import tundraVideo from "../assets/vehicles/pickup/tundra/video/tundra-toyota-hd_2_1.mp4";
+import tundraGallery1 from "../assets/vehicles/pickup/tundra/gallery/tundra-toyota-cp-2.webp";
+import tundraGallery2 from "../assets/vehicles/pickup/tundra/gallery/tundra-toyota-cp-6.webp";
+import tundraGallery3 from "../assets/vehicles/pickup/tundra/gallery/tundra-toyota-cp-8.webp";
+import tundraGallery4 from "../assets/vehicles/pickup/tundra/gallery/tundra-toyota-cp-9.webp";
+import tundraGallery5 from "../assets/vehicles/pickup/tundra/gallery/tundra-toyota-cp-10.webp";
+import tundraGallery6 from "../assets/vehicles/pickup/tundra/gallery/tundra-toyota-cp-12.webp";
+import tundraGallery7 from "../assets/vehicles/pickup/tundra/gallery/tundra-toyota-cp-19.webp";
+import tundraGallery8 from "../assets/vehicles/pickup/tundra/gallery/tundra-toyota-cp-22 (1).webp";
+import tundraGallery9 from "../assets/vehicles/pickup/tundra/gallery/tundra-toyota-cp-24.webp";
+import tundraGallery10 from "../assets/vehicles/pickup/tundra/gallery/tundra-toyota-cp-26.webp";
+import landCruiserHero from "../assets/vehicles/pickup/land-cruiser/hero/land-cruiser-portada-banner.png";
+import landCruiserLogo from "../assets/vehicles/pickup/land-cruiser/logo/logo-landcruiser.webp";
+import landCruiserVideo from "../assets/vehicles/pickup/land-cruiser/video/LAND-CRUSER-PAEA-WEB.mp4";
+import landCruiserGallery1 from "../assets/vehicles/pickup/land-cruiser/gallery/LC-CS-Toyota-CASAPELLAS-1.webp";
+import landCruiserGallery2 from "../assets/vehicles/pickup/land-cruiser/gallery/LC-CS-Toyota-CASAPELLAS-4.webp";
+import landCruiserGallery3 from "../assets/vehicles/pickup/land-cruiser/gallery/LC-CS-Toyota-CASAPELLAS-5.webp";
+import landCruiserGallery4 from "../assets/vehicles/pickup/land-cruiser/gallery/LC-CS-Toyota-CASAPELLAS-6.webp";
+import landCruiserGallery5 from "../assets/vehicles/pickup/land-cruiser/gallery/LC-CS-Toyota-CASAPELLAS-7.webp";
+import landCruiserGallery6 from "../assets/vehicles/pickup/land-cruiser/gallery/LC-CS-Toyota-CASAPELLAS-8.webp";
+import landCruiserGallery7 from "../assets/vehicles/pickup/land-cruiser/gallery/LC-CS-Toyota-CASAPELLAS-9.webp";
+import landCruiserGallery8 from "../assets/vehicles/pickup/land-cruiser/gallery/LC-CS-Toyota-CASAPELLAS-13.webp";
+import landCruiserGallery9 from "../assets/vehicles/pickup/land-cruiser/gallery/LC-CS-Toyota-CASAPELLAS-23.webp";
+import landCruiserGallery10 from "../assets/vehicles/pickup/land-cruiser/gallery/lc-dc-jul25-1.webp";
+import landCruiserGallery11 from "../assets/vehicles/pickup/land-cruiser/gallery/lc-dc-jul25-3.webp";
+import landCruiserGallery12 from "../assets/vehicles/pickup/land-cruiser/gallery/lc-dc-jul25-5.webp";
+
+export const tundraMedia: VehicleMedia = {
+  hero: { src: tundraHero, alt: "Toyota Tundra, imagen principal" },
+  logo: { src: tundraLogo, alt: "Logo del modelo Toyota Tundra" },
+  gallery: [
+    { src: tundraGallery1, alt: "Toyota Tundra, imagen 1 de la galería" },
+    { src: tundraGallery2, alt: "Toyota Tundra, imagen 2 de la galería" },
+    { src: tundraGallery3, alt: "Toyota Tundra, imagen 3 de la galería" },
+    { src: tundraGallery4, alt: "Toyota Tundra, imagen 4 de la galería" },
+    { src: tundraGallery5, alt: "Toyota Tundra, imagen 5 de la galería" },
+    { src: tundraGallery6, alt: "Toyota Tundra, imagen 6 de la galería" },
+    { src: tundraGallery7, alt: "Toyota Tundra, imagen 7 de la galería" },
+    { src: tundraGallery8, alt: "Toyota Tundra, imagen 8 de la galería" },
+    { src: tundraGallery9, alt: "Toyota Tundra, imagen 9 de la galería" },
+    { src: tundraGallery10, alt: "Toyota Tundra, imagen 10 de la galería" },
+  ],
+  video: { src: tundraVideo, title: "Presentación de la Toyota Tundra" },
+};
+
+export const landCruiserMedia: VehicleMedia = {
+  hero: { src: landCruiserHero, alt: "Toyota Land Cruiser, imagen principal" },
+  logo: { src: landCruiserLogo, alt: "Logo del modelo Toyota Land Cruiser" },
+  gallery: [
+    { src: landCruiserGallery1, alt: "Toyota Land Cruiser, imagen 1 de la galería" },
+    { src: landCruiserGallery2, alt: "Toyota Land Cruiser, imagen 2 de la galería" },
+    { src: landCruiserGallery3, alt: "Toyota Land Cruiser, imagen 3 de la galería" },
+    { src: landCruiserGallery4, alt: "Toyota Land Cruiser, imagen 4 de la galería" },
+    { src: landCruiserGallery5, alt: "Toyota Land Cruiser, imagen 5 de la galería" },
+    { src: landCruiserGallery6, alt: "Toyota Land Cruiser, imagen 6 de la galería" },
+    { src: landCruiserGallery7, alt: "Toyota Land Cruiser, imagen 7 de la galería" },
+    { src: landCruiserGallery8, alt: "Toyota Land Cruiser, imagen 8 de la galería" },
+    { src: landCruiserGallery9, alt: "Toyota Land Cruiser, imagen 9 de la galería" },
+    { src: landCruiserGallery10, alt: "Toyota Land Cruiser, imagen 10 de la galería" },
+    { src: landCruiserGallery11, alt: "Toyota Land Cruiser, imagen 11 de la galería" },
+    { src: landCruiserGallery12, alt: "Toyota Land Cruiser, imagen 12 de la galería" },
+  ],
+  video: { src: landCruiserVideo, title: "Presentación de la Toyota Land Cruiser" },
+};
 
 import hero from "../assets/vehicles/pickup/hilux-2-4/hero/img-toyota-portada-2-4.png";
 import logo from "../assets/vehicles/pickup/hilux-2-4/logo/logo-hilux-2-4.webp";
@@ -46,7 +112,7 @@ import hilux28Gallery9 from "../assets/vehicles/pickup/hilux-2-8/gallery/HILUX-2
 import hiluxGrHero from "../assets/vehicles/pickup/hilux-gr/hero/img-toyota-portada-gr.png";
 import hiluxGrLogo from "../assets/vehicles/pickup/hilux-gr/logo/logo-hilux-gr.webp";
 import hiluxGrVideo from "../assets/vehicles/pickup/hilux-gr/video/toyota-gr-casapellas.mp4";
-import hiluxGrdisponible from "../assets/vehicles/pickup/hilux-gr/colors/hilux-gr-sport-360-5-img-01.webp";
+import hiluxGrdisponible from "../assets/vehicles/pickup/hilux-gr/colors/img-toyota-portada-gr.jpg";
 import hiluxGrGallery1 from "../assets/vehicles/pickup/hilux-gr/gallery/hilux-gr-sport-360-5-img-02.webp";
 import hiluxGrGallery2 from "../assets/vehicles/pickup/hilux-gr/gallery/hilux-gr-sport-360-5-img-03.webp";
 import hiluxGrGallery3 from "../assets/vehicles/pickup/hilux-gr/gallery/hilux-gr-sport-360-5-img-04.webp";
