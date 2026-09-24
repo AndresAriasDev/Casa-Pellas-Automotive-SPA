@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getVehicleById, getVehicles } from "../services/vehicleService";
 import { vehicleDetails } from "../data/vehicleDetails";
-import { VehicleCard } from "../components/VehicleCard";
+import { RelatedVehiclesCarousel } from "../components/RelatedVehiclesCarousel";
 import { VehicleRequestForm } from "../components/VehicleRequestForm";
 import { useEffect, useState } from "react";
 import type { Vehicle } from "../types/vehicle";
@@ -12,6 +12,36 @@ import { VehicleColorSelector } from "../components/VehicleColorSelector";
 import { VehicleSpecifications } from "../components/VehicleSpecifications";
 import { VehicleVideo } from "../components/VehicleVideo";
 import "./VehicleDetailPage.css";
+import toyotaRequestBackground from "../assets/brand/img-fondo-toyota.webp";
+import toyotaRequestSlogan from "../assets/brand/no-es-un-carro-es-toyota.webp";
+
+const safetyDescriptions: Record<string, string> = {
+  ABS: "Ayuda a evitar que las ruedas se bloqueen al frenar, favoreciendo el control de la dirección.",
+  VSC: "Ayuda a mantener la estabilidad cuando se detecta una pérdida de trayectoria.",
+  EBD: "Distribuye electrónicamente la fuerza de frenado entre las ruedas según las condiciones de la frenada.",
+  BA: "Asiste la fuerza de frenado cuando detecta una frenada de emergencia.",
+  TRC: "Ayuda a limitar el patinamiento de las ruedas al acelerar sobre superficies con poca adherencia.",
+  TRAC: "Ayuda a limitar el patinamiento de las ruedas al acelerar sobre superficies con poca adherencia.",
+  "A-TRC": "Ayuda a controlar el patinamiento de las ruedas para favorecer la tracción en superficies de baja adherencia.",
+  HAC: "Ayuda a limitar el retroceso del vehículo al iniciar la marcha en una pendiente.",
+  "Auto LSD": "Ayuda a recuperar tracción al frenar una rueda motriz que patina. No equivale a un bloqueo mecánico del diferencial.",
+  Airbags: "Complementan la protección del cinturón de seguridad y ayudan a amortiguar el impacto en determinadas colisiones.",
+  "Chasis reforzado": "Su estructura reforzada contribuye a la resistencia del conjunto del vehículo.",
+  "Carrocería reforzada": "Los refuerzos de la carrocería contribuyen a la protección de los ocupantes en caso de impacto.",
+  "Cinturones de seguridad": "Ayudan a sujetar a los ocupantes y limitar su desplazamiento durante una frenada brusca o una colisión.",
+  "Cinturones de seguridad de 3 puntos": "Sujetando el torso y la pelvis, ayudan a distribuir las fuerzas de retención durante una colisión.",
+  "Advertencia de cinturón de seguridad": "Recuerda a los ocupantes la necesidad de abrocharse el cinturón de seguridad.",
+  "Cámara de reversa": "Permite observar la zona detrás del vehículo al retroceder. Complementa la revisión directa del entorno.",
+  "Sensores de proximidad": "Ayudan a advertir la presencia de obstáculos cercanos durante las maniobras.",
+  "Frenos de disco delanteros": "Utilizan discos y pastillas en las ruedas delanteras para reducir la velocidad del vehículo al frenar.",
+};
+const safetyAliases: Record<string, string> = {
+  "Airbags SRS": "Airbags",
+  "Bolsas de aire SRS": "Airbags",
+  "Airbags SRS dobles delanteros": "Airbags",
+  "Bolsas de aire frontales y de rodilla": "Airbags",
+  "Chasís reforzado": "Chasis reforzado",
+};
 
 export function VehicleDetailPage({ currency }: { currency: Currency }) {
   const { id } = useParams();
@@ -25,6 +55,7 @@ function VehicleDetailContent({ id, currency }: { id: string | undefined; curren
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [openSafetyIndex, setOpenSafetyIndex] = useState<number | null>(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -73,66 +104,101 @@ useEffect(() => {
 
   const images = (vehicle.media?.gallery ?? [])
     .filter((image, index, all) => image.src && all.findIndex((item) => item.src === image.src) === index);
-  const colors = (vehicle.media?.colors ?? []).filter((color) => color.id !== "disponible" && color.name.trim() && color.image.src);
-  const selectedColor = colors.find((color) => color.id === selectedColorId);
-  const mainImage = selectedColor?.image ?? vehicle.media?.hero ?? { src: vehicle.image, alt: `${vehicle.brand} ${vehicle.model}` };
+  const colorImages = (vehicle.media?.colors ?? []).filter((color) => color.image.src);
+  const colors = colorImages.filter((color) => color.id !== "disponible" && color.name.trim());
+  const selectedColor = colors.find((color) => color.id === selectedColorId) ?? colors[0];
+  const mainImage = selectedColor?.image ?? colorImages[0]?.image ?? { src: vehicle.image, alt: `${vehicle.brand} ${vehicle.model}` };
   const detail = vehicleDetails.find((item) => item.vehicleId === vehicle.id);
   const safety = detail?.safety?.filter((item) => item.trim()) ?? [];
+  const safetyImage = vehicle.media?.hero ?? { src: vehicle.image, alt: `${vehicle.brand} ${vehicle.model}` };
   const others = availableVehicles.filter((item) => item.id !== vehicle.id);
   const related = [
     ...others.filter((item) => item.category === vehicle.category),
     ...others.filter((item) => item.category !== vehicle.category),
-  ].slice(0, 3);
+  ];
 
   return (
     <main className="vehicle-detail">
       <section className="vehicle-detail__overview" aria-labelledby="vehicle-detail-title">
+        <div className="vehicle-detail__banner">
+          <div className="vehicle-detail__container">
+            <p className="vehicle-detail__eyebrow">{vehicle.brand}</p>
+            <h1 id="vehicle-detail-title">{vehicle.model}</h1>
+          </div>
+        </div>
         <div className="vehicle-detail__container">
           <Link className="vehicle-detail__back" to="/">← Volver al catálogo</Link>
           <div className="vehicle-detail__hero-grid">
-            <div className="vehicle-detail__main-image"><img src={mainImage.src} alt={mainImage.alt} /></div>
+            <div className="vehicle-detail__visual">
+              <div className="vehicle-detail__main-image"><img src={mainImage.src} alt={mainImage.alt} fetchPriority="high" /></div>
+              <VehicleColorSelector colors={colors} model={vehicle.model} selectedId={selectedColor?.id ?? null} onSelect={setSelectedColorId} />
+            </div>
             <div className="vehicle-detail__summary">
-              {vehicle.media?.logo && <img className="vehicle-detail__logo" src={vehicle.media.logo.src} alt={vehicle.media.logo.alt} />}
-              <p className="vehicle-detail__eyebrow">{vehicle.brand}</p>
-              <h1 id="vehicle-detail-title">{vehicle.model}</h1>
-              <p className="vehicle-detail__meta">{vehicle.category}{vehicle.year !== undefined ? ` · ${vehicle.year}` : ""}</p>
               <div className="vehicle-detail__pricing">
                 <span>{vehicle.priceTo !== undefined && vehicle.priceTo !== vehicle.priceFrom ? "Rango de precios" : "Precio desde"}</span>
                 <strong>{formatVehiclePrice(vehicle.priceFrom, vehicle.priceTo, currency)}</strong>
                 <small>{currency === "NIO" ? "Córdobas nicaragüenses" : "Dólares estadounidenses"}</small>
               </div>
-              <VehicleColorSelector colors={colors} model={vehicle.model} selectedId={selectedColorId} onSelect={setSelectedColorId} />
-              <a className="vehicle-detail__button" href="#vehicle-request">Solicitar información <span aria-hidden="true">↗</span></a>
-              <p className="vehicle-detail__cta-note">Cotización o prueba de manejo</p>
+              <VehicleSpecifications vehicle={vehicle} features={detail?.features ?? []} variant="icons" />
+              <div className="vehicle-detail__actions" role="group" aria-label="Solicitudes del vehículo">
+                <a className="vehicle-detail__button" href="#vehicle-request">Cotizar</a>
+                <a className="vehicle-detail__button vehicle-detail__button--secondary" href="#vehicle-request">Prueba de manejo</a>
+              </div>
             </div>
           </div>
         </div>
       </section>
       <div className="vehicle-detail__container vehicle-detail__body">
-        <VehicleSpecifications vehicle={vehicle} features={detail?.features ?? []} />
         {vehicle.media?.video?.src && <VehicleVideo video={vehicle.media.video} />}
         {safety.length > 0 && <section className="vehicle-detail__safety" aria-labelledby="vehicle-safety-title">
-          <p className="vehicle-detail__eyebrow">Seguridad</p>
-          <h2 id="vehicle-safety-title">Protección en cada recorrido</h2>
-          <ul>{safety.map((item) => <li key={item}><span aria-hidden="true">✓</span>{item}</li>)}</ul>
-        </section>}
-        <section className="vehicle-detail__request" id="vehicle-request" aria-labelledby="vehicle-request-title">
-          <div><p className="vehicle-detail__eyebrow">Da el siguiente paso</p><h2 id="vehicle-request-title">Conoce más sobre tu {vehicle.model}</h2><p>Elige una cotización o una prueba de manejo y completa tus datos.</p></div>
-          <div className="vehicle-detail__form"><VehicleRequestForm key={vehicle.id} vehicleId={vehicle.id} /></div>
-        </section>
-        {images.length > 0 && <section className="vehicle-detail__gallery-section" aria-labelledby="vehicle-gallery-title">
-          <h2 id="vehicle-gallery-title">Galería de fotografías</h2>
-          <VehicleGallery images={images} model={`${vehicle.brand} ${vehicle.model}`} />
-        </section>}
-        {related.length > 0 && <section className="vehicle-detail__related" aria-labelledby="vehicle-related-title">
-          <h2 id="vehicle-related-title">Vehículos relacionados</h2>
-          <div className="vehicle-detail__related-grid">
-            {related.map((item) => <VehicleCard key={item.id} vehicle={item} currency={currency} onViewDetails={(vehicleId) => {
-              navigate(`/vehicle/${vehicleId}`);
-              window.scrollTo({ top: 0, behavior: "instant" });
-            }} />)}
+          <h2 id="vehicle-safety-title">Seguridad</h2>
+          <div className="vehicle-detail__safety-image">
+            <img src={safetyImage.src} alt={safetyImage.alt} loading="lazy" />
+          </div>
+          <div className="vehicle-detail__safety-accordion">
+            {safety.map((item, index) => {
+              const expanded = openSafetyIndex === index;
+              const name = item.trim();
+              const description = safetyDescriptions[safetyAliases[name] ?? name]
+                ?? "Consulta con un asesor el funcionamiento y las condiciones de uso de este elemento de seguridad.";
+              return <div className="vehicle-detail__safety-item" key={`${item}-${index}`}>
+                <h3><button type="button" id={`safety-trigger-${index}`} aria-expanded={expanded}
+                  aria-controls={`safety-panel-${index}`} onClick={() => setOpenSafetyIndex(expanded ? null : index)}>
+                  {item}<span className="vehicle-detail__safety-chevron" aria-hidden="true" />
+                </button></h3>
+                <div id={`safety-panel-${index}`} className="vehicle-detail__safety-panel" data-open={expanded}
+                  role="region" aria-labelledby={`safety-trigger-${index}`} aria-hidden={!expanded}>
+                  <div><p>{description}</p></div>
+                </div>
+              </div>;
+            })}
+          </div>
+          <div className="vehicle-detail__actions vehicle-detail__safety-actions" role="group" aria-label="Solicitudes del vehículo">
+            <a className="vehicle-detail__button" href="#vehicle-request">Cotizar</a>
+            <a className="vehicle-detail__button vehicle-detail__button--secondary" href="#vehicle-request">Prueba de manejo</a>
           </div>
         </section>}
+        {images.length > 0 && <section className="vehicle-detail__gallery-section" aria-label="Galería de fotografías">
+          <VehicleGallery images={images} model={`${vehicle.brand} ${vehicle.model}`} />
+        </section>}
+      </div>
+        <section className="vehicle-detail__request" id="vehicle-request" aria-labelledby="vehicle-request-title">
+          <div className="vehicle-detail__container vehicle-detail__request-card">
+            <div className="vehicle-detail__request-visual" style={{ backgroundImage: `url(${toyotaRequestBackground})` }}>
+              <div className="vehicle-detail__request-slogan">
+                <img src={toyotaRequestSlogan} alt="No es un carro, es un Toyota" loading="lazy" />
+              </div>
+            </div>
+            <div className="vehicle-detail__form">
+              <VehicleRequestForm key={vehicle.id} vehicleId={vehicle.id} model={vehicle.model} />
+            </div>
+          </div>
+        </section>
+      <div className="vehicle-detail__container vehicle-detail__body">
+        {related.length > 0 && <RelatedVehiclesCarousel vehicles={related} currency={currency} onViewDetails={(vehicleId) => {
+              navigate(`/vehicle/${vehicleId}`);
+              window.scrollTo({ top: 0, behavior: "instant" });
+            }} />}
       </div>
     </main>
   );
