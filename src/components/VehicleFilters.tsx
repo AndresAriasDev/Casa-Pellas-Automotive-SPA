@@ -17,7 +17,7 @@ const categories: Array<VehicleCategory | "Todos"> = [
   "SUV",
   "Sedán",
   "Pickup",
-  "Hatchback",
+  "Comercial",
 ];
 
 export function VehicleFilters({

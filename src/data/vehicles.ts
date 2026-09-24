@@ -1,4 +1,7 @@
 import type { Vehicle } from "../types/vehicle";
+import { hiaceMedia, fortunerMedia } from "./vehicleMedia";
+import hiaceCatalogImage from "../assets/vehicles/comercial/hiace/colors/hiace-portada.png";
+import fortunerCatalogImage from "../assets/vehicles/suv/fortuner/colors/camioneta-fortuner-portada.png";
 import { hilux24Media, hilux28Media, hiluxGrMedia, tundraMedia, landCruiserMedia } from "./vehicleMedia";
 import tundraCatalogImage from "../assets/vehicles/pickup/tundra/colors/tundra-portada.png";
 import landCruiserCatalogImage from "../assets/vehicles/pickup/land-cruiser/colors/land-cruiser-portada.png";
@@ -7,6 +10,30 @@ import hilux28CatalogImage from "../assets/vehicles/pickup/hilux-2-8/colors/cami
 import hiluxGrCatalogImage from "../assets/vehicles/pickup/hilux-gr/colors/img-toyota-portada-gr.jpg";
 
 export const vehicles: Vehicle[] = [
+  {
+    id: "toyota-hiace",
+    brand: "Toyota",
+    model: "Hiace",
+    category: "Comercial",
+    priceFrom: 1208602,
+    transmissions: [],
+    description: "Consulta más información sobre la Toyota Hiace.",
+    image: hiaceCatalogImage,
+    media: hiaceMedia,
+    featured: false,
+  },
+  {
+    id: "toyota-fortuner",
+    brand: "Toyota",
+    model: "Fortuner",
+    category: "SUV",
+    priceFrom: 2563701,
+    transmissions: [],
+    description: "Consulta más información sobre la Toyota Fortuner.",
+    image: fortunerCatalogImage,
+    media: fortunerMedia,
+    featured: false,
+  },
   {
     id: "toyota-tundra",
     brand: "Toyota",

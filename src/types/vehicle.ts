@@ -1,4 +1,4 @@
-export type VehicleCategory = "SUV" | "Sedán" | "Pickup" | "Hatchback";
+export type VehicleCategory = "SUV" | "Sedán" | "Pickup" | "Hatchback" | "Comercial";
 
 export type FuelType = "Gasolina" | "Diésel" | "Híbrido" | "Eléctrico";
 
