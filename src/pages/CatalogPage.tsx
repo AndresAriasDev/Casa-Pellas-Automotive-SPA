@@ -13,7 +13,7 @@ import type { Currency } from "../types/currency";
 
 type SortOption = "price-asc" | "price-desc" | "year-desc";
 
-export function CatalogPage({ currency }: { currency: Currency }) {
+export function CatalogPage({ currency, onInitialReady }: { currency: Currency; onInitialReady?: () => void }) {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] =
@@ -24,6 +24,9 @@ export function CatalogPage({ currency }: { currency: Currency }) {
   const [reloadKey, setReloadKey] = useState(0);
 
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLoading) onInitialReady?.();
+  }, [isLoading, onInitialReady]);
 
   useEffect(() => {
     const loadVehicles = async () => {

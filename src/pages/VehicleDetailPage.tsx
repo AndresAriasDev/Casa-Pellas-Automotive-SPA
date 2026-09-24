@@ -11,6 +11,7 @@ import { VehicleGallery } from "../components/VehicleGallery";
 import { VehicleColorSelector } from "../components/VehicleColorSelector";
 import { VehicleSpecifications } from "../components/VehicleSpecifications";
 import { VehicleVideo } from "../components/VehicleVideo";
+import { VehicleDetailSkeleton } from "../components/VehicleDetailSkeleton";
 import "./VehicleDetailPage.css";
 import toyotaRequestBackground from "../assets/brand/img-fondo-toyota.webp";
 import toyotaRequestSlogan from "../assets/brand/no-es-un-carro-es-toyota.webp";
@@ -43,12 +44,41 @@ const safetyAliases: Record<string, string> = {
   "Chasís reforzado": "Chasis reforzado",
 };
 
-export function VehicleDetailPage({ currency }: { currency: Currency }) {
-  const { id } = useParams();
-  return <VehicleDetailContent key={id} id={id} currency={currency} />;
+function initialVehicleImage(vehicle: Vehicle) {
+  const colors = (vehicle.media?.colors ?? []).filter((color) => color.image.src);
+  return (colors.find((color) => color.id !== "disponible" && color.name.trim()) ?? colors[0])?.image
+    ?? { src: vehicle.image, alt: `${vehicle.brand} ${vehicle.model}` };
 }
 
-function VehicleDetailContent({ id, currency }: { id: string | undefined; currency: Currency }) {
+function prepareHeroImage(src: string, signal: AbortSignal): Promise<void> {
+  return new Promise((resolve) => {
+    if (signal.aborted) return resolve();
+    const image = new Image();
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      window.clearTimeout(timeout);
+      image.onload = null;
+      image.onerror = null;
+      signal.removeEventListener("abort", finish);
+      resolve();
+    };
+    // Safety limit for a stalled image, not a minimum display duration.
+    const timeout = window.setTimeout(finish, 12000);
+    signal.addEventListener("abort", finish, { once: true });
+    image.onload = () => { void image.decode().catch(() => {}).then(finish); };
+    image.onerror = finish;
+    image.src = src;
+  });
+}
+
+export function VehicleDetailPage({ currency, onInitialReady }: { currency: Currency; onInitialReady?: () => void }) {
+  const { id } = useParams();
+  return <VehicleDetailContent key={id} id={id} currency={currency} onInitialReady={onInitialReady} />;
+}
+
+function VehicleDetailContent({ id, currency, onInitialReady }: { id: string | undefined; currency: Currency; onInitialReady?: () => void }) {
   const navigate = useNavigate();
   const [selectedColorId, setSelectedColorId] = useState<string | null>(null);
   const [availableVehicles, setAvailableVehicles] = useState<Vehicle[]>([]);
@@ -56,6 +86,9 @@ function VehicleDetailContent({ id, currency }: { id: string | undefined; curren
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [openSafetyIndex, setOpenSafetyIndex] = useState<number | null>(0);
+  useEffect(() => {
+    if (!isLoading) onInitialReady?.();
+  }, [isLoading, onInitialReady]);
 
   useEffect(() => {
     let cancelled = false;
@@ -69,9 +102,12 @@ function VehicleDetailContent({ id, currency }: { id: string | undefined; curren
 
 useEffect(() => {
   let cancelled = false;
+  const controller = new AbortController();
   const loadVehicle = async () => {
     try {
       const selectedVehicle = id ? await getVehicleById(id) : undefined;
+      if (cancelled) return;
+      if (selectedVehicle) await prepareHeroImage(initialVehicleImage(selectedVehicle).src, controller.signal);
       if (!cancelled) setVehicle(selectedVehicle ?? null);
     } catch {
       if (!cancelled) setError(true);
@@ -81,15 +117,11 @@ useEffect(() => {
   };
 
   void loadVehicle();
-  return () => { cancelled = true; };
+  return () => { cancelled = true; controller.abort(); };
 }, [id]);
 
   if (isLoading) {
-    return (
-      <main className="vehicle-detail vehicle-detail__state" aria-busy="true">
-        <p role="status">Cargando información del vehículo…</p>
-      </main>
-    );
+    return <VehicleDetailSkeleton />;
   }
 
   if (error || !vehicle) {
@@ -107,7 +139,7 @@ useEffect(() => {
   const colorImages = (vehicle.media?.colors ?? []).filter((color) => color.image.src);
   const colors = colorImages.filter((color) => color.id !== "disponible" && color.name.trim());
   const selectedColor = colors.find((color) => color.id === selectedColorId) ?? colors[0];
-  const mainImage = selectedColor?.image ?? colorImages[0]?.image ?? { src: vehicle.image, alt: `${vehicle.brand} ${vehicle.model}` };
+  const mainImage = selectedColor?.image ?? initialVehicleImage(vehicle);
   const detail = vehicleDetails.find((item) => item.vehicleId === vehicle.id);
   const safety = detail?.safety?.filter((item) => item.trim()) ?? [];
   const safetyImage = vehicle.media?.hero ?? { src: vehicle.image, alt: `${vehicle.brand} ${vehicle.model}` };

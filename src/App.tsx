@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { AppLoader } from "./components/AppLoader";
 import type { Currency } from "./types/currency";
 import { CURRENCY_STORAGE_KEY } from "./config/currency";
 import { Footer } from "./components/Footer";
@@ -8,6 +9,8 @@ import { VehicleDetailPage } from "./pages/VehicleDetailPage";
 import { CatalogPage } from "./pages/CatalogPage";
 
 function App() {
+  const [initialReady, setInitialReady] = useState(false);
+  const handleInitialReady = useCallback(() => setInitialReady(true), []);
   const [currency, setCurrency] = useState<Currency>(() => {
     try {
       return localStorage.getItem(CURRENCY_STORAGE_KEY) === "USD" ? "USD" : "NIO";
@@ -27,11 +30,12 @@ function App() {
 
   return (
     <BrowserRouter>
+      <AppLoader ready={initialReady} />
       <Header currency={currency} onCurrencyChange={handleCurrencyChange} />
 
       <Routes>
-        <Route path="/vehicle/:id" element={<VehicleDetailPage currency={currency} />} />
-        <Route path="/" element={<CatalogPage currency={currency} />} />
+        <Route path="/vehicle/:id" element={<VehicleDetailPage currency={currency} onInitialReady={handleInitialReady} />} />
+        <Route path="/" element={<CatalogPage currency={currency} onInitialReady={handleInitialReady} />} />
       </Routes>
       <Footer />
     </BrowserRouter>

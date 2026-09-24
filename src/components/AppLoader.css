@@ -1,0 +1,24 @@
+html.app-initializing { overflow: hidden; }
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at 25% 25%, rgb(24 72 155 / 5%), transparent 55%), var(--color-surface, #fff);
+  opacity: 1;
+  transition: opacity 220ms ease;
+}
+.app-loader--leaving { opacity: 0; }
+.app-loader__emblem { position: relative; display: grid; place-items: center; width: clamp(170px, 37vw, 250px); aspect-ratio: 1; }
+.app-loader__emblem::before,
+.app-loader__emblem::after { content: ""; position: absolute; inset: 0; border-radius: 50%; }
+.app-loader__emblem::before { border: 1px solid var(--color-border, #e4e7ec); box-shadow: 0 0 70px rgb(24 72 155 / 5%); }
+.app-loader__emblem::after { border: 2px solid transparent; border-top-color: var(--color-primary, #18489b); border-right-color: color-mix(in srgb, var(--color-primary, #18489b) 20%, transparent); animation: app-loader-orbit 1.8s linear infinite; }
+.app-loader__emblem img { display: block; width: 62%; height: 50%; object-fit: contain; }
+.app-loader__text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@keyframes app-loader-orbit { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .app-loader { transition: none; }
+  .app-loader__emblem::after { animation: none; }
+}

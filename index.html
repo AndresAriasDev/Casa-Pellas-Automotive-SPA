@@ -1,13 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="app-initializing">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>proyectopstulacion</title>
+    <link rel="stylesheet" href="/src/components/AppLoader.css" />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="app-loader" class="app-loader" role="status" aria-live="polite" aria-label="Cargando">
+      <div class="app-loader__emblem"><img src="/src/assets/brand/isologo-casa-pellas.webp" alt="" fetchpriority="high" /></div>
+      <span class="app-loader__text">Cargando</span>
+    </div>
+    <div id="root" inert></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
