@@ -12,6 +12,8 @@ export function Footer() {
           <img
             src={logoCasaPellas}
             alt="Casa Pellas"
+            width={2560}
+            height={261}
             loading="lazy"
             decoding="async"
           />

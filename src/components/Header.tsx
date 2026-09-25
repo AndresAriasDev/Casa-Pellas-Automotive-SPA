@@ -105,6 +105,8 @@ export function Header({ currency, onCurrencyChange }: HeaderProps) {
           <img
             src={logoCasaPellas}
             alt="Casa Pellas"
+            width={600}
+            height={120}
             decoding="async"
           />
         </Link>

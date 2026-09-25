@@ -104,7 +104,26 @@ export function CatalogPage({ currency, onInitialReady }: { currency: Currency; 
   if (isLoading) {
     return (
       <main className="catalog-page">
-        <div className="catalog-loading">
+        <div className="catalog-loading" aria-busy="true">
+          <div className="catalog-loading__hero" aria-hidden="true">
+            <div className="catalog-loading__hero-content">
+              <div className="catalog-loading__copy">
+                <span />
+                <strong />
+                <strong />
+                <i />
+              </div>
+              <div className="catalog-loading__vehicle" />
+              <div className="catalog-loading__price" />
+            </div>
+          </div>
+          <div className="catalog-loading__content" aria-hidden="true">
+            <div className="catalog-loading__filters" />
+            <div className="catalog-loading__result" />
+            <div className="catalog-loading__cards">
+              {[0, 1, 2].map((item) => <div key={item} />)}
+            </div>
+          </div>
           <p>Cargando vehículos...</p>
         </div>
       </main>
