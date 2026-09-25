@@ -4,7 +4,7 @@ import { vehicleDetails } from "../data/vehicleDetails";
 import { RelatedVehiclesCarousel } from "../components/RelatedVehiclesCarousel";
 import { VehicleRequestForm } from "../components/VehicleRequestForm";
 import { useEffect, useState } from "react";
-import type { Vehicle } from "../types/vehicle";
+import type { Vehicle, VehicleDetailMedia } from "../types/vehicle";
 import type { Currency } from "../types/currency";
 import { formatVehiclePrice } from "../utils/formatVehiclePrice";
 import { VehicleGallery } from "../components/VehicleGallery";
@@ -13,6 +13,7 @@ import { VehicleSpecifications } from "../components/VehicleSpecifications";
 import { VehicleVideo } from "../components/VehicleVideo";
 import { VehicleDetailSkeleton } from "../components/VehicleDetailSkeleton";
 import { NotFoundPage } from "./NotFoundPage";
+import { getVehicleDetailMedia } from "../data/vehicleDetailMedia";
 import "./VehicleDetailPage.css";
 import "../components/PageBanner.css";
 import toyotaRequestBackground from "../assets/brand/img-fondo-toyota.webp";
@@ -47,9 +48,7 @@ const safetyAliases: Record<string, string> = {
 };
 
 function initialVehicleImage(vehicle: Vehicle) {
-  const colors = (vehicle.media?.colors ?? []).filter((color) => color.image.src);
-  return (colors.find((color) => color.id !== "disponible" && color.name.trim()) ?? colors[0])?.image
-    ?? { src: vehicle.image, alt: `${vehicle.brand} ${vehicle.model}` };
+  return vehicle.media?.hero ?? { src: vehicle.image, alt: `${vehicle.brand} ${vehicle.model}` };
 }
 
 function prepareHeroImage(src: string, signal: AbortSignal): Promise<void> {
@@ -85,6 +84,7 @@ function VehicleDetailContent({ id, currency, onInitialReady }: { id: string | u
   const [selectedColorId, setSelectedColorId] = useState<string | null>(null);
   const [availableVehicles, setAvailableVehicles] = useState<Vehicle[]>([]);
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
+  const [detailMedia, setDetailMedia] = useState<VehicleDetailMedia | undefined>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [openSafetyIndex, setOpenSafetyIndex] = useState<number | null>(0);
@@ -109,8 +109,20 @@ useEffect(() => {
     try {
       const selectedVehicle = id ? await getVehicleById(id) : undefined;
       if (cancelled) return;
+      let selectedDetailMedia: VehicleDetailMedia | undefined;
+      if (selectedVehicle) {
+        try {
+          selectedDetailMedia = await getVehicleDetailMedia(selectedVehicle.id);
+        } catch {
+          // Keep the detail available when optional media cannot be loaded.
+        }
+      }
+      if (cancelled) return;
       if (selectedVehicle) await prepareHeroImage(initialVehicleImage(selectedVehicle).src, controller.signal);
-      if (!cancelled) setVehicle(selectedVehicle ?? null);
+      if (!cancelled) {
+        setVehicle(selectedVehicle ?? null);
+        setDetailMedia(selectedDetailMedia);
+      }
     } catch {
       if (!cancelled) setError(true);
     } finally {
@@ -128,9 +140,9 @@ useEffect(() => {
 
   if (error || !vehicle) return <NotFoundPage onInitialReady={onInitialReady} />;
 
-  const images = (vehicle.media?.gallery ?? [])
+  const images = (detailMedia?.gallery ?? [])
     .filter((image, index, all) => image.src && all.findIndex((item) => item.src === image.src) === index);
-  const colorImages = (vehicle.media?.colors ?? []).filter((color) => color.image.src);
+  const colorImages = (detailMedia?.colors ?? []).filter((color) => color.image.src);
   const colors = colorImages.filter((color) => color.id !== "disponible" && color.name.trim());
   const selectedColor = colors.find((color) => color.id === selectedColorId) ?? colors[0];
   const mainImage = selectedColor?.image ?? initialVehicleImage(vehicle);
@@ -175,7 +187,7 @@ useEffect(() => {
         </div>
       </section>
       <div className="vehicle-detail__container vehicle-detail__body">
-        {vehicle.media?.video?.src && <VehicleVideo video={vehicle.media.video} />}
+        {detailMedia?.video?.src && <VehicleVideo video={detailMedia.video} />}
         {safety.length > 0 && <section className="vehicle-detail__safety" aria-labelledby="vehicle-safety-title">
           <h2 id="vehicle-safety-title">Seguridad</h2>
           <div className="vehicle-detail__safety-image">

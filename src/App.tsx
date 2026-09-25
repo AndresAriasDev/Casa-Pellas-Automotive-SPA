@@ -1,18 +1,19 @@
 import { BrowserRouter, matchPath, Route, Routes, useLocation } from "react-router-dom";
-import { useCallback, useLayoutEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useLayoutEffect, useState } from "react";
 import { AppLoader } from "./components/AppLoader";
 import { ScrollToTop } from "./components/ScrollToTop";
 import type { Currency } from "./types/currency";
 import { CURRENCY_STORAGE_KEY } from "./config/currency";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
-import { VehicleDetailPage } from "./pages/VehicleDetailPage";
 import { CatalogPage } from "./pages/CatalogPage";
-import { ContactPage } from "./pages/ContactPage";
 import { WhatsAppFloatingButton } from "./components/WhatsAppFloatingButton";
-import { NotFoundPage } from "./pages/NotFoundPage";
-import { ServicesPage } from "./pages/ServicesPage";
 import { vehicles } from "./data/vehicles";
+
+const VehicleDetailPage = lazy(() => import("./pages/VehicleDetailPage").then(({ VehicleDetailPage }) => ({ default: VehicleDetailPage })));
+const ContactPage = lazy(() => import("./pages/ContactPage").then(({ ContactPage }) => ({ default: ContactPage })));
+const ServicesPage = lazy(() => import("./pages/ServicesPage").then(({ ServicesPage }) => ({ default: ServicesPage })));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then(({ NotFoundPage }) => ({ default: NotFoundPage })));
 
 const defaultTitle = "Toyota | Casa Pellas";
 const notFoundTitle = "Vehículo no encontrado | Casa Pellas";
@@ -79,13 +80,15 @@ function App() {
       <AppLoader ready={initialReady} />
       <Header currency={currency} onCurrencyChange={handleCurrencyChange} />
 
-      <Routes>
-        <Route path="/vehicle/:id" element={<VehicleDetailPage currency={currency} onInitialReady={handleInitialReady} />} />
-        <Route path="/contacto" element={<ContactPage onInitialReady={handleInitialReady} />} />
-        <Route path="/servicios" element={<ServicesPage onInitialReady={handleInitialReady} />} />
-        <Route path="/" element={<CatalogPage currency={currency} onInitialReady={handleInitialReady} />} />
-        <Route path="*" element={<NotFoundPage onInitialReady={handleInitialReady} />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/vehicle/:id" element={<VehicleDetailPage currency={currency} onInitialReady={handleInitialReady} />} />
+          <Route path="/contacto" element={<ContactPage onInitialReady={handleInitialReady} />} />
+          <Route path="/servicios" element={<ServicesPage onInitialReady={handleInitialReady} />} />
+          <Route path="/" element={<CatalogPage currency={currency} onInitialReady={handleInitialReady} />} />
+          <Route path="*" element={<NotFoundPage onInitialReady={handleInitialReady} />} />
+        </Routes>
+      </Suspense>
       <Footer />
       <WhatsAppFloatingButton />
     </BrowserRouter>

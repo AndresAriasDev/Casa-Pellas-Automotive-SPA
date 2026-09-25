@@ -37,6 +37,9 @@ export interface VehicleMedia {
   };
 }
 
+export type VehicleCatalogMedia = Pick<VehicleMedia, "hero" | "logo">;
+export type VehicleDetailMedia = VehicleMedia;
+
 export interface Vehicle {
   id: string;
   brand: string;
@@ -52,5 +55,5 @@ export interface Vehicle {
   description: string;
   image: string;
   featured: boolean;
-  media?: VehicleMedia;
+  media?: VehicleCatalogMedia;
 }

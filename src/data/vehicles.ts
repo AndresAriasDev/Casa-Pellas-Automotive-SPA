@@ -1,13 +1,25 @@
 import type { Vehicle } from "../types/vehicle";
-import { hiaceMedia, fortunerMedia } from "./vehicleMedia";
 import hiaceCatalogImage from "../assets/vehicles/comercial/hiace/colors/hiace-portada.png";
 import fortunerCatalogImage from "../assets/vehicles/suv/fortuner/colors/camioneta-fortuner-portada.png";
-import { hilux24Media, hilux28Media, hiluxGrMedia, tundraMedia, landCruiserMedia } from "./vehicleMedia";
 import tundraCatalogImage from "../assets/vehicles/pickup/tundra/colors/tundra-portada.png";
 import landCruiserCatalogImage from "../assets/vehicles/pickup/land-cruiser/colors/land-cruiser-portada.png";
 import hilux24CatalogImage from "../assets/vehicles/pickup/hilux-2-4/colors/camioneta-hilux-2-4-color-blanco-casa-pellas-nicaragua.webp";
 import hilux28CatalogImage from "../assets/vehicles/pickup/hilux-2-8/colors/camioneta-hilux-2-8-color-blanco-casa-pellas-nicaragua.webp";
 import hiluxGrCatalogImage from "../assets/vehicles/pickup/hilux-gr/colors/img-toyota-portada-gr.jpg";
+import hiaceHero from "../assets/vehicles/comercial/hiace/hero/hiace-portada-banner.png";
+import hiaceLogo from "../assets/vehicles/comercial/hiace/logo/logo-hiace.webp";
+import fortunerHero from "../assets/vehicles/suv/fortuner/hero/camioneta-fortuner-portada-banner.png";
+import fortunerLogo from "../assets/vehicles/suv/fortuner/logo/recurso-26@2x.webp";
+import tundraHero from "../assets/vehicles/pickup/tundra/hero/toyota-tundra-portada-banner.webp";
+import tundraLogo from "../assets/vehicles/pickup/tundra/logo/logo-tundra.webp";
+import landCruiserHero from "../assets/vehicles/pickup/land-cruiser/hero/land-cruiser-portada-banner.png";
+import landCruiserLogo from "../assets/vehicles/pickup/land-cruiser/logo/logo-landcruiser.webp";
+import hilux24Hero from "../assets/vehicles/pickup/hilux-2-4/hero/img-toyota-portada-2-4.png";
+import hilux24Logo from "../assets/vehicles/pickup/hilux-2-4/logo/logo-hilux-2-4.webp";
+import hilux28Hero from "../assets/vehicles/pickup/hilux-2-8/hero/img-toyota-portada-2-8.png";
+import hilux28Logo from "../assets/vehicles/pickup/hilux-2-8/logo/logo-hulux-2-8.webp";
+import hiluxGrHero from "../assets/vehicles/pickup/hilux-gr/hero/img-toyota-portada-gr.png";
+import hiluxGrLogo from "../assets/vehicles/pickup/hilux-gr/logo/logo-hilux-gr.webp";
 
 export const vehicles: Vehicle[] = [
   {
@@ -19,7 +31,10 @@ export const vehicles: Vehicle[] = [
     transmissions: ["Mecánico"],
     description: "Consulta más información sobre la Toyota Hiace.",
     image: hiaceCatalogImage,
-    media: hiaceMedia,
+    media: {
+      hero: { src: hiaceHero, alt: "Toyota Hiace, imagen principal" },
+      logo: { src: hiaceLogo, alt: "Logo del modelo Toyota Hiace" },
+    },
     featured: false,
   },
   {
@@ -31,7 +46,10 @@ export const vehicles: Vehicle[] = [
     transmissions: ["Automático FULL"],
     description: "Consulta más información sobre la Toyota Fortuner.",
     image: fortunerCatalogImage,
-    media: fortunerMedia,
+    media: {
+      hero: { src: fortunerHero, alt: "Toyota Fortuner, imagen principal" },
+      logo: { src: fortunerLogo, alt: "Logo del modelo Toyota Fortuner" },
+    },
     featured: false,
   },
   {
@@ -43,7 +61,10 @@ export const vehicles: Vehicle[] = [
     transmissions: ["Automática"],
     description: "Consulta más información sobre la Toyota Tundra.",
     image: tundraCatalogImage,
-    media: tundraMedia,
+    media: {
+      hero: { src: tundraHero, alt: "Toyota Tundra, imagen principal" },
+      logo: { src: tundraLogo, alt: "Logo del modelo Toyota Tundra" },
+    },
     featured: false,
   },
   {
@@ -55,7 +76,10 @@ export const vehicles: Vehicle[] = [
     transmissions: ["Mecánico AMB 4x4", "Mecánico DC 4x4", "Mecánico CS 4x4"],
     description: "Consulta más información sobre la Toyota Land Cruiser.",
     image: landCruiserCatalogImage,
-    media: landCruiserMedia,
+    media: {
+      hero: { src: landCruiserHero, alt: "Toyota Land Cruiser, imagen principal" },
+      logo: { src: landCruiserLogo, alt: "Logo del modelo Toyota Land Cruiser" },
+    },
     featured: false,
   },
   {
@@ -72,7 +96,10 @@ export const vehicles: Vehicle[] = [
     description:
       "SUV moderna y versátil, diseñada para ofrecer comodidad, tecnología y seguridad tanto en ciudad como en carretera.",
     image: hilux28CatalogImage,
-    media: hilux28Media,
+    media: {
+      hero: { src: hilux28Hero, alt: "Toyota Hilux 2.8, imagen principal" },
+      logo: { src: hilux28Logo, alt: "Logo del modelo Toyota Hilux 2.8" },
+    },
     featured: true,
   },
   {
@@ -89,7 +116,10 @@ export const vehicles: Vehicle[] = [
     description:
       "Pickup robusta con gran capacidad de carga, preparada para el trabajo y las aventuras fuera de la ciudad.",
     image: hilux24CatalogImage,
-    media: hilux24Media,
+    media: {
+      hero: { src: hilux24Hero, alt: "Toyota Hilux 2.4 en color blanco" },
+      logo: { src: hilux24Logo, alt: "Logo del modelo Toyota Hilux 2.4" },
+    },
     featured: true,
   },
   {
@@ -106,7 +136,10 @@ export const vehicles: Vehicle[] = [
     description:
       "SUV híbrida que combina eficiencia, tecnología y confort para una conducción moderna.",
     image: hiluxGrCatalogImage,
-    media: hiluxGrMedia,
+    media: {
+      hero: { src: hiluxGrHero, alt: "Toyota Hilux GR, imagen principal" },
+      logo: { src: hiluxGrLogo, alt: "Logo del modelo Toyota Hilux GR" },
+    },
     featured: true,
   },
 ];
