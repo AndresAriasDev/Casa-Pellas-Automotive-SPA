@@ -597,7 +597,10 @@ html:has(.vehicle-detail #vehicle-request) {
 
 .vehicle-detail__related-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
 .vehicle-detail__related-controls { display: flex; flex-shrink: 0; gap: var(--space-2); }
-.vehicle-detail__related-controls button { width: 44px; height: 44px; border: 1px solid var(--color-border-strong); border-radius: var(--radius-full); background: var(--color-surface); color: var(--color-primary); font-size: var(--font-size-xl); }
+.vehicle-detail__related-controls button { display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid var(--color-border-strong); border-radius: var(--radius-full); background: var(--color-surface); color: var(--color-primary); }
+.vehicle-detail__related-chevron { display: block; width: 20px; height: 20px; background: currentColor; mask-repeat: no-repeat; mask-position: center; mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; -webkit-mask-size: contain; }
+.vehicle-detail__related-chevron--left { mask-image: url("../assets/icons/chevron-left.svg"); -webkit-mask-image: url("../assets/icons/chevron-left.svg"); }
+.vehicle-detail__related-chevron--right { mask-image: url("../assets/icons/chevron-right.svg"); -webkit-mask-image: url("../assets/icons/chevron-right.svg"); }
 .vehicle-detail__related-controls button:hover:not(:disabled) { background: var(--color-surface-muted); border-color: var(--color-primary); }
 .vehicle-detail__related-controls button:disabled { opacity: 0.4; cursor: default; }
 .vehicle-detail__related-controls button:focus-visible,

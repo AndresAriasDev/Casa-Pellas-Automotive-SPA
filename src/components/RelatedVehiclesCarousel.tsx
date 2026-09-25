@@ -49,8 +49,8 @@ export function RelatedVehiclesCarousel({ vehicles, currency, onViewDetails }: R
     <div className="vehicle-detail__related-heading">
       <h2 id={`${trackId}-title`}>Vehículos relacionados</h2>
       <div className="vehicle-detail__related-controls">
-        <button type="button" aria-label="Ver vehículos anteriores" aria-controls={trackId} disabled={edges.start} onClick={() => move(-1)}>←</button>
-        <button type="button" aria-label="Ver más vehículos relacionados" aria-controls={trackId} disabled={edges.end} onClick={() => move(1)}>→</button>
+        <button type="button" aria-label="Ver vehículos anteriores" aria-controls={trackId} disabled={edges.start} onClick={() => move(-1)}><span className="vehicle-detail__related-chevron vehicle-detail__related-chevron--left" aria-hidden="true" /></button>
+        <button type="button" aria-label="Ver más vehículos relacionados" aria-controls={trackId} disabled={edges.end} onClick={() => move(1)}><span className="vehicle-detail__related-chevron vehicle-detail__related-chevron--right" aria-hidden="true" /></button>
       </div>
     </div>
     <div ref={trackRef} id={trackId} className="vehicle-detail__related-track" tabIndex={0} role="region" aria-label="Carrusel de vehículos relacionados"

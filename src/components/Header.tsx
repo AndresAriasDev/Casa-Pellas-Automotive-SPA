@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import logoCasaPellas from "../assets/brand/logo-casa-pellas-version-azul.webp";
+import logoCasaPellas from "../assets/brand/logo-casa-pellas-version-azul.png";
 import "./Header.css";
 import type { Currency } from "../types/currency";
 

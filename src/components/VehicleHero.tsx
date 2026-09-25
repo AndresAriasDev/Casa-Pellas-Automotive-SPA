@@ -72,7 +72,7 @@ export function VehicleHero({ vehicles, currency }: VehicleHeroProps) {
       <div className="vehicle-hero__bottom">
         {featured.length > 1 && (
           <div className="vehicle-hero__controls" aria-label="Controles de vehículos destacados">
-            <button type="button" className="vehicle-hero__arrow" onClick={() => changeSlide(-1)} aria-label="Vehículo anterior">←</button>
+            <button type="button" className="vehicle-hero__arrow" onClick={() => changeSlide(-1)} aria-label="Vehículo anterior"><span className="vehicle-hero__chevron vehicle-hero__chevron--left" aria-hidden="true" /></button>
             <div className="vehicle-hero__dots">
               {featured.map((item, itemIndex) => (
                 <button
@@ -84,7 +84,7 @@ export function VehicleHero({ vehicles, currency }: VehicleHeroProps) {
                 ><span /></button>
               ))}
             </div>
-            <button type="button" className="vehicle-hero__arrow" onClick={() => changeSlide(1)} aria-label="Vehículo siguiente">→</button>
+            <button type="button" className="vehicle-hero__arrow" onClick={() => changeSlide(1)} aria-label="Vehículo siguiente"><span className="vehicle-hero__chevron vehicle-hero__chevron--right" aria-hidden="true" /></button>
           </div>
         )}
       </div>

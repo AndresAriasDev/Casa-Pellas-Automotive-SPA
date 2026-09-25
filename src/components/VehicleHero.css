@@ -199,8 +199,10 @@
 
 .vehicle-hero .vehicle-hero__arrow {
   border: 1px solid color-mix(in srgb, var(--color-surface) 35%, transparent);
-  font-size: var(--font-size-xl);
 }
+.vehicle-hero__chevron { display: block; width: 20px; height: 20px; background: currentColor; mask-repeat: no-repeat; mask-position: center; mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; -webkit-mask-size: contain; }
+.vehicle-hero__chevron--left { mask-image: url("../assets/icons/chevron-left.svg"); -webkit-mask-image: url("../assets/icons/chevron-left.svg"); }
+.vehicle-hero__chevron--right { mask-image: url("../assets/icons/chevron-right.svg"); -webkit-mask-image: url("../assets/icons/chevron-right.svg"); }
 
 .vehicle-hero button:hover { background: color-mix(in srgb, var(--color-surface) 12%, transparent); }
 .vehicle-hero__dots span { width: 6px; height: 6px; border-radius: var(--radius-full); background: var(--color-text-light); }
