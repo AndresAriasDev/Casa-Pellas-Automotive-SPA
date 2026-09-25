@@ -229,7 +229,6 @@ useEffect(() => {
       <div className="vehicle-detail__container vehicle-detail__body">
         {related.length > 0 && <RelatedVehiclesCarousel vehicles={related} currency={currency} onViewDetails={(vehicleId) => {
               navigate(`/vehicle/${vehicleId}`);
-              window.scrollTo({ top: 0, behavior: "instant" });
             }} />}
       </div>
     </main>

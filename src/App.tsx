@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useCallback, useState } from "react";
 import { AppLoader } from "./components/AppLoader";
+import { ScrollToTop } from "./components/ScrollToTop";
 import type { Currency } from "./types/currency";
 import { CURRENCY_STORAGE_KEY } from "./config/currency";
 import { Footer } from "./components/Footer";
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AppLoader ready={initialReady} />
       <Header currency={currency} onCurrencyChange={handleCurrencyChange} />
 
