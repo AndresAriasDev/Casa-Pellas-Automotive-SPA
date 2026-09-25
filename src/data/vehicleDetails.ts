@@ -96,7 +96,22 @@ export const vehicleDetails: VehicleDetail[] = [
       {
         id: "gear-count",
         label: "Transmisión",
-        value: "10 velocidades",
+        value: "Automática ECT-i, 10 velocidades",
+      },
+      {
+        id: "torque",
+        label: "Torque",
+        value: "479 lb-ft",
+      },
+      {
+        id: "drivetrain",
+        label: "Tracción",
+        value: "4x4",
+      },
+      {
+        id: "fuel-tank-capacity",
+        label: "Capacidad de tanque",
+        value: "122 L",
       },
     ],
     safety: [
@@ -122,7 +137,12 @@ export const vehicleDetails: VehicleDetail[] = [
       {
         id: "gear-count",
         label: "Transmisión",
-        value: "5 velocidades",
+        value: "6 MT",
+      },
+      {
+        id: "torque",
+        label: "Torque",
+        value: "285 / 2200",
       },
       {
         id: "drivetrain",
@@ -203,6 +223,31 @@ export const vehicleDetails: VehicleDetail[] = [
       "Cinturones de seguridad de 3 puntos",
       "Chasís reforzado",
       "A-TRC",
+    ],
+  },
+  {
+    vehicleId: "toyota-hilux-gr",
+    features: [
+      {
+        id: "power",
+        label: "Potencia",
+        value: "201 HP",
+      },
+      {
+        id: "gear-count",
+        label: "Transmisión",
+        value: "6 velocidades",
+      },
+      {
+        id: "drivetrain",
+        label: "Tracción",
+        value: "4x4",
+      },
+      {
+        id: "fuel-tank-capacity",
+        label: "Capacidad de tanque",
+        value: "80 L",
+      },
     ],
   },
 ];

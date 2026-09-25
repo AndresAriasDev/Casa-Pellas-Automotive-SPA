@@ -17,15 +17,15 @@ export const detailMedia: VehicleDetailMedia = {
       },
     },
   ],
-  // La carpeta gallery contiene actualmente cuatro imÃ¡genes.
+  // La carpeta gallery contiene actualmente cuatro imágenes.
   gallery: [
-    { src: hiluxGrGallery1, alt: "Toyota Hilux GR, vista 1 de la galerÃ­a" },
-    { src: hiluxGrGallery2, alt: "Toyota Hilux GR, vista 2 de la galerÃ­a" },
-    { src: hiluxGrGallery3, alt: "Toyota Hilux GR, vista 3 de la galerÃ­a" },
-    { src: hiluxGrGallery4, alt: "Toyota Hilux GR, vista 4 de la galerÃ­a" },
+    { src: hiluxGrGallery1, alt: "Toyota Hilux GR, vista 1 de la galería" },
+    { src: hiluxGrGallery2, alt: "Toyota Hilux GR, vista 2 de la galería" },
+    { src: hiluxGrGallery3, alt: "Toyota Hilux GR, vista 3 de la galería" },
+    { src: hiluxGrGallery4, alt: "Toyota Hilux GR, vista 4 de la galería" },
   ],
   video: {
     src: hiluxGrVideo,
-    title: "PresentaciÃ³n de la Toyota Hilux GR de Casa Pellas",
+    title: "Presentación de la Toyota Hilux GR de Casa Pellas",
   },
 };

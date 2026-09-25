@@ -19,21 +19,26 @@ export function VehicleCard({
 
   return (
     <article className="vehicle-card">
-      <div className="vehicle-card__image">
+      <button
+        className="vehicle-card__image"
+        type="button"
+        aria-label={`Ver detalles de ${vehicle.brand} ${vehicle.model}`}
+        onClick={() => onViewDetails(vehicle.id)}
+      >
         <img
-        src={vehicle.image}
-        alt={`${vehicle.brand} ${vehicle.model}`}
-        loading="lazy"
-        decoding="async"
-      />
-          <div className="vehicle-card__logo">
-            {logo ? (
-              <img src={logo.src} alt={logo.alt} loading="lazy" decoding="async" />
-            ) : (
-              <span>{vehicle.brand}</span>
-            )}
-          </div>
-      </div>
+          src={vehicle.image}
+          alt={`${vehicle.brand} ${vehicle.model}`}
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="vehicle-card__logo">
+          {logo ? (
+            <img src={logo.src} alt={logo.alt} loading="lazy" decoding="async" />
+          ) : (
+            <span>{vehicle.brand}</span>
+          )}
+        </div>
+      </button>
 
       <div className="vehicle-card__content">
           {badges.length > 0 && (

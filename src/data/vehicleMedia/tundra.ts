@@ -13,16 +13,16 @@ import tundraGallery10 from "../../assets/vehicles/pickup/tundra/gallery/tundra-
 
 export const detailMedia: VehicleDetailMedia = {
   gallery: [
-    { src: tundraGallery1, alt: "Toyota Tundra, imagen 1 de la galerÃ­a" },
-    { src: tundraGallery2, alt: "Toyota Tundra, imagen 2 de la galerÃ­a" },
-    { src: tundraGallery3, alt: "Toyota Tundra, imagen 3 de la galerÃ­a" },
-    { src: tundraGallery4, alt: "Toyota Tundra, imagen 4 de la galerÃ­a" },
-    { src: tundraGallery5, alt: "Toyota Tundra, imagen 5 de la galerÃ­a" },
-    { src: tundraGallery6, alt: "Toyota Tundra, imagen 6 de la galerÃ­a" },
-    { src: tundraGallery7, alt: "Toyota Tundra, imagen 7 de la galerÃ­a" },
-    { src: tundraGallery8, alt: "Toyota Tundra, imagen 8 de la galerÃ­a" },
-    { src: tundraGallery9, alt: "Toyota Tundra, imagen 9 de la galerÃ­a" },
-    { src: tundraGallery10, alt: "Toyota Tundra, imagen 10 de la galerÃ­a" },
+    { src: tundraGallery1, alt: "Toyota Tundra, imagen 1 de la galería" },
+    { src: tundraGallery2, alt: "Toyota Tundra, imagen 2 de la galería" },
+    { src: tundraGallery3, alt: "Toyota Tundra, imagen 3 de la galería" },
+    { src: tundraGallery4, alt: "Toyota Tundra, imagen 4 de la galería" },
+    { src: tundraGallery5, alt: "Toyota Tundra, imagen 5 de la galería" },
+    { src: tundraGallery6, alt: "Toyota Tundra, imagen 6 de la galería" },
+    { src: tundraGallery7, alt: "Toyota Tundra, imagen 7 de la galería" },
+    { src: tundraGallery8, alt: "Toyota Tundra, imagen 8 de la galería" },
+    { src: tundraGallery9, alt: "Toyota Tundra, imagen 9 de la galería" },
+    { src: tundraGallery10, alt: "Toyota Tundra, imagen 10 de la galería" },
   ],
-  video: { src: tundraVideo, title: "PresentaciÃ³n de la Toyota Tundra" },
+  video: { src: tundraVideo, title: "Presentación de la Toyota Tundra" },
 };
