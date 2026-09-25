@@ -9,6 +9,7 @@ import { Header } from "./components/Header";
 import { VehicleDetailPage } from "./pages/VehicleDetailPage";
 import { CatalogPage } from "./pages/CatalogPage";
 import { ContactPage } from "./pages/ContactPage";
+import { WhatsAppFloatingButton } from "./components/WhatsAppFloatingButton";
 
 function App() {
   const [initialReady, setInitialReady] = useState(false);
@@ -42,6 +43,7 @@ function App() {
         <Route path="/" element={<CatalogPage currency={currency} onInitialReady={handleInitialReady} />} />
       </Routes>
       <Footer />
+      <WhatsAppFloatingButton />
     </BrowserRouter>
   );
 }
