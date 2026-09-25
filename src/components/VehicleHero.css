@@ -241,21 +241,40 @@
 
 @media (max-width: 600px) {
   .vehicle-hero { padding-bottom: var(--space-5); }
-  .vehicle-hero__slide { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); padding-block: var(--space-6); }
-  .vehicle-hero__visual { grid-row: 1; aspect-ratio: 1.8; }
+  .vehicle-hero__slide { position: relative; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); padding-block: var(--space-4) var(--space-10); }
+  .vehicle-hero__visual { grid-row: 1; grid-column: 1; aspect-ratio: 1.8; }
+  .vehicle-hero__intro { grid-row: 2; margin-top: var(--space-3); }
   .vehicle-hero__visual img { max-height: 230px; }
   .vehicle-hero h2 { margin-block: var(--space-2) var(--space-3); }
   .vehicle-hero__description { line-height: var(--line-height-normal); }
   .vehicle-hero__cta { margin-top: var(--space-4); }
-  .vehicle-hero__details { display: block; }
+  .vehicle-hero__details {
+    position: absolute;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    right: 0;
+    bottom: var(--space-2);
+    z-index: 1;
+    justify-self: end;
+    text-align: left;
+    padding: var(--space-2) var(--space-3);
+    max-width: 100%;
+  }
+  .vehicle-hero__details::before { display: none; }
+  .vehicle-hero__details::after { left: var(--space-4); width: var(--space-6); }
+  .vehicle-hero__details .vehicle-hero__price-label { font-size: var(--font-size-xs); letter-spacing: 0.06em; }
+  .vehicle-hero .vehicle-hero__price { margin-top: var(--space-1); font-size: clamp(1rem, 4vw, 1.25rem); }
+  .vehicle-hero .vehicle-hero__currency { position: absolute; width: 1px; height: 1px; padding: 0; margin: 0; border: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .vehicle-hero__bottom { flex-wrap: wrap; }
   .vehicle-hero__dots button { width: 36px; }
 }
 
 @media (max-width: 760px) {
   .vehicle-hero {
-    padding-top: calc(var(--space-24) + var(--space-24) + var(--space-6));
+    padding-top: var(--space-2);
   }
+  /* Keep the visual area below the compact fixed Header. */
+  .vehicle-hero__slide { margin-top: var(--space-24); }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -109,16 +109,6 @@ export function Header({ currency, onCurrencyChange }: HeaderProps) {
         </Link>
 
         <div className="site-header__controls">
-          <label className="site-header__currency">
-            <span className="site-header__sr-only">Moneda</span>
-            <select value={currency} onChange={(event) => {
-              const value = event.target.value;
-              if (value === "NIO" || value === "USD") onCurrencyChange(value);
-            }}>
-              <option value="NIO">NIO</option>
-              <option value="USD">USD</option>
-            </select>
-          </label>
           <button ref={menuButtonRef} className="site-header__menu-button" type="button"
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={menuOpen} aria-controls="site-header-navigation"
             onClick={() => { setMenuOpen((open) => !open); setIsHidden(false); }}>
@@ -142,6 +132,16 @@ export function Header({ currency, onCurrencyChange }: HeaderProps) {
               <a href="#contacto">Contacto</a>
             </li>
           </ul>
+          <label className="site-header__currency">
+            <span className="site-header__sr-only">Moneda</span>
+            <select value={currency} onChange={(event) => {
+              const value = event.target.value;
+              if (value === "NIO" || value === "USD") onCurrencyChange(value);
+            }}>
+              <option value="NIO">NIO</option>
+              <option value="USD">USD</option>
+            </select>
+          </label>
         </nav>
       </div>
     </header>

@@ -41,12 +41,13 @@
 }
 
 .site-header__nav {
+  display: contents;
   grid-area: nav;
   justify-self: center;
   min-width: 0;
 }
 
-.site-header__controls { grid-area: controls; display: flex; align-items: center; gap: var(--space-2); }
+.site-header__controls { grid-area: controls; display: none; align-items: center; gap: var(--space-2); }
 .site-header__sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .site-header__menu-button { display: none; position: relative; width: 44px; height: 44px; padding: 0; border: 1px solid var(--color-border); border-radius: var(--radius-full); background: var(--color-surface-muted); color: var(--color-primary-dark); cursor: pointer; }
 .site-header__menu-button:hover { background: var(--color-surface); border-color: var(--color-primary); }
@@ -57,6 +58,8 @@
 .site-header--menu-open .site-header__menu-button span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
 
 .site-header__links {
+  grid-area: nav;
+  justify-self: center;
   display: flex;
   align-items: center;
   gap: var(--space-1);
@@ -100,6 +103,9 @@
 }
 
 .site-header__currency {
+  grid-area: controls;
+  justify-self: end;
+  width: fit-content;
   position: relative;
   display: flex;
   flex-shrink: 0;
@@ -171,14 +177,16 @@
   }
 
   .site-header__brand img {
-    width: clamp(104px, 25vw, 140px);
+    width: 140px;
     max-width: 100%;
   }
 
   .site-header__brand { min-width: 0; justify-self: start; padding: var(--space-1); }
   .site-header__menu-button { display: block; flex-shrink: 0; }
+  .site-header__controls { display: flex; }
 
   .site-header__nav {
+    display: block;
     position: absolute;
     top: calc(100% + var(--space-2));
     inset-inline: 0;
@@ -198,9 +206,11 @@
     transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
   }
   .site-header--menu-open .site-header__nav { visibility: visible; opacity: 1; pointer-events: auto; transform: translateY(0); }
-  .site-header__links { flex-direction: column; align-items: stretch; gap: var(--space-2); padding: 0; border-radius: 0; background: transparent; }
+  .site-header__links { width: 100%; justify-self: stretch; flex-direction: column; align-items: stretch; gap: var(--space-2); padding: 0; border-radius: 0; background: transparent; }
 
   .site-header__currency {
+    margin-top: var(--space-4);
+    margin-left: auto;
     flex-direction: row;
     align-items: center;
     gap: var(--space-2);
