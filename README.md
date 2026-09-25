@@ -93,11 +93,16 @@ src/
 
 ## Posibles mejoras futuras
 
-- Consumir catálogo, precios y disponibilidad desde una API o CMS.
-- Incorporar una capa de backend propia para administrar solicitudes y su seguimiento.
-- Añadir pruebas automatizadas para filtros, formularios y rutas.
-- Generar variantes responsive adicionales para imágenes y ampliar la optimización de medios.
-- Integrar servicios empresariales y un panel administrativo cuando estén disponibles.
+- Integrar una API o CMS para administrar dinámicamente el catálogo, precios, disponibilidad y contenido de los vehículos.
+- Incorporar un backend propio para gestionar las solicitudes de cotización, prueba de manejo y contacto.
+- Reforzar el SEO técnico y on-page mediante metadatos por página, datos estructurados, contenido optimizado y textos alternativos descriptivos en las imágenes.
+- Optimizar los recursos multimedia utilizando formatos modernos como WebP/AVIF, variantes responsive y estrategias adicionales de carga para mejorar el rendimiento.
+- Incorporar una sección de contenido o blog administrable para publicar novedades, guías y contenido relacionado con los vehículos, apoyando la estrategia de posicionamiento orgánico.
+- Integrar Google Analytics y Google Search Console para analizar tráfico, comportamiento, rendimiento orgánico e indexación.
+- Incorporar herramientas de mapas de calor y análisis de interacción para identificar patrones de navegación y oportunidades de mejora en la experiencia de usuario.
+- Implementar gestión de consentimiento de cookies y privacidad de acuerdo con las herramientas de analítica y seguimiento utilizadas.
+- Añadir protección anti-spam y anti-bots en los formularios mediante reCAPTCHA, Cloudflare Turnstile o una solución equivalente.
+- Incorporar pruebas automatizadas y continuar ampliando las mejoras de accesibilidad, rendimiento y experiencia de usuario.
 
 ## Autor
 
