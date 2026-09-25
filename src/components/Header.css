@@ -168,6 +168,8 @@
     margin-top: var(--space-3);
   }
 
+  .site-header--menu-open { z-index: 1100; }
+
   .site-header__surface {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas: "brand controls";

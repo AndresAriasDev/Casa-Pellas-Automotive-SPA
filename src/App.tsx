@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { VehicleDetailPage } from "./pages/VehicleDetailPage";
 import { CatalogPage } from "./pages/CatalogPage";
+import { ContactPage } from "./pages/ContactPage";
 
 function App() {
   const [initialReady, setInitialReady] = useState(false);
@@ -37,6 +38,7 @@ function App() {
 
       <Routes>
         <Route path="/vehicle/:id" element={<VehicleDetailPage currency={currency} onInitialReady={handleInitialReady} />} />
+        <Route path="/contacto" element={<ContactPage onInitialReady={handleInitialReady} />} />
         <Route path="/" element={<CatalogPage currency={currency} onInitialReady={handleInitialReady} />} />
       </Routes>
       <Footer />

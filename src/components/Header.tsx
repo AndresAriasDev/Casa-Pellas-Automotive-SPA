@@ -129,7 +129,7 @@ export function Header({ currency, onCurrencyChange }: HeaderProps) {
               <a href="#servicios">Servicios</a>
             </li>
             <li>
-              <a href="#contacto">Contacto</a>
+              <NavLink to="/contacto">Contacto</NavLink>
             </li>
           </ul>
           <label className="site-header__currency">
