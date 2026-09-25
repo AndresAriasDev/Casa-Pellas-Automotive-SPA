@@ -10,15 +10,21 @@ La aplicación está publicada en [casapellas.lagransultana.com](https://casapel
 
 - Catálogo de vehículos con Hero de modelos destacados, navegación por dots y gestos de deslizamiento en móvil.
 - Búsqueda por marca o modelo, filtro por categoría y ordenamiento por precio o año.
-- Selector de moneda NIO/USD, conservado en el almacenamiento local del navegador.
+- Selector de moneda NIO/USD que permite visualizar los precios en ambas monedas y recuerda la moneda seleccionada mediante el almacenamiento local del navegador.
 - Vista de detalle por vehículo en `/vehiculo/:id`, con precio, especificaciones, colores disponibles, galería con visor, video y vehículos relacionados.
-- Formularios para cotización, prueba de manejo y contacto, con validación, enfoque del primer campo inválido, estados de envío, errores y diálogos de confirmación.
-- Envío compartido de solicitudes a Google Apps Script con metadatos básicos del navegador y la ruta de origen.
+- Formularios de cotización, prueba de manejo y contacto con validaciones, estados de envío, manejo de errores y confirmación.
+- Las solicitudes enviadas desde los formularios se procesan mediante Google Apps Script y se almacenan en Google Sheets para su consulta y seguimiento.
 - Página de contacto con mapa de sucursales mediante Leaflet y teselas de OpenStreetMap.
 - Rutas de Servicios, Términos y condiciones y Política de privacidad con página temporal de mantenimiento, además de una página 404.
 - Botón global de WhatsApp con mensaje contextual para el vehículo visitado.
 - Diseño responsive para escritorio y dispositivos móviles, con navegación accesible mediante teclado y enlaces internos de React Router.
 - Estados de carga para catálogo y detalle, reintento ante error de catálogo y estado sin resultados al aplicar filtros.
+
+## Registro de solicitudes
+
+Las solicitudes enviadas desde los formularios se almacenan en una hoja de Google Sheets mediante Google Apps Script. Para efectos de esta prueba técnica, se proporciona acceso a los registros.
+
+[Ver solicitudes registradas en Google Sheets](https://docs.google.com/spreadsheets/d/1pf3eyjgh1oDx73wXO_fvUIPlFfS--B8b8K_CY9QL7lw/edit?usp=sharing)
 
 ## Tecnologías utilizadas
 
@@ -31,9 +37,10 @@ La aplicación está publicada en [casapellas.lagransultana.com](https://casapel
 
 ## Requisitos previos
 
-- Node.js y npm.
+Para ejecutar el proyecto localmente necesitas:
 
-El proyecto no define una versión específica de Node.js en su configuración.
+- Node.js
+- npm
 
 ## Instalación y ejecución local
 
