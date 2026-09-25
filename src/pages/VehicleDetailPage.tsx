@@ -240,7 +240,7 @@ useEffect(() => {
         </section>
       <div className="vehicle-detail__container vehicle-detail__body">
         {related.length > 0 && <RelatedVehiclesCarousel vehicles={related} currency={currency} onViewDetails={(vehicleId) => {
-              navigate(`/vehicle/${vehicleId}`);
+              navigate(`/vehiculo/${vehicleId}`);
             }} />}
       </div>
     </main>

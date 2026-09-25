@@ -9,14 +9,16 @@ export function Footer() {
     <footer className="site-footer">
       <div className="site-footer__main">
         <div className="site-footer__brand">
-          <img
-            src={logoCasaPellas}
-            alt="Casa Pellas"
-            width={2560}
-            height={261}
-            loading="lazy"
-            decoding="async"
-          />
+          <Link to="/" aria-label="Casa Pellas - Inicio">
+            <img
+              src={logoCasaPellas}
+              alt="Casa Pellas"
+              width={2560}
+              height={261}
+              loading="lazy"
+              decoding="async"
+            />
+          </Link>
           <a className="site-footer__address" href="https://maps.app.goo.gl/7VuYJ9n7PgVdpfxN8" target="_blank" rel="noopener noreferrer">
             <address>Managua, Nicaragua<br />De la rotonda el Güegüense 350 mts. al sur</address>
           </a>
@@ -48,8 +50,8 @@ export function Footer() {
 
       <div className="site-footer__secondary">
         <div className="site-footer__privacy">
-          <span role="link" aria-disabled="true">Términos y condiciones</span>
-          <span role="link" aria-disabled="true">Política de privacidad</span>
+          <Link to="/terminos-y-condiciones">Términos y condiciones</Link>
+          <Link to="/politica-de-privacidad">Política de privacidad</Link>
         </div>
         <ul className="site-footer__social" aria-label="Redes sociales">
           {[

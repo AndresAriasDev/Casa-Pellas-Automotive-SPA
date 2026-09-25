@@ -94,7 +94,7 @@ export function CatalogPage({ currency, onInitialReady }: { currency: Currency; 
   }, [vehicles, search, category, sort]);
 
   const handleViewDetails = (vehicleId: string) => {
-    navigate(`/vehicle/${vehicleId}`);
+    navigate(`/vehiculo/${vehicleId}`);
   };
 
   const handleRetry = () => {

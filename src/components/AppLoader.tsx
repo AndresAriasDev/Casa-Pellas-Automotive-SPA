@@ -4,7 +4,7 @@ import { useMatch } from "react-router-dom";
 // The single splash is in index.html so it is visible before React boots.
 export function AppLoader({ ready }: { ready: boolean }) {
   const catalogRoute = useMatch("/");
-  const detailRoute = useMatch("/vehicle/:id");
+  const detailRoute = useMatch("/vehiculo/:id");
   const canPrepare = ready || (!catalogRoute && !detailRoute);
   useEffect(() => {
     if (!canPrepare) return;

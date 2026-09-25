@@ -44,14 +44,14 @@ export function VehicleHero({ vehicles, currency }: VehicleHeroProps) {
       <div className="vehicle-hero__slide" key={vehicle.id}>
         <div className="vehicle-hero__intro">
           <p className="vehicle-hero__eyebrow">{vehicle.brand} · {vehicle.year}</p>
-          <h2><Link className="vehicle-hero__title-link" to={`/vehicle/${vehicle.id}`}>{vehicle.model}</Link></h2>
+          <h2><Link className="vehicle-hero__title-link" to={`/vehiculo/${vehicle.id}`}>{vehicle.model}</Link></h2>
           <p className="vehicle-hero__description">{vehicle.description}</p>
-          <Link className="vehicle-hero__cta" to={`/vehicle/${vehicle.id}`}>
+          <Link className="vehicle-hero__cta" to={`/vehiculo/${vehicle.id}`}>
             Explorar vehículo <span aria-hidden="true">↗</span>
           </Link>
         </div>
 
-        <Link className="vehicle-hero__visual" to={`/vehicle/${vehicle.id}`} aria-label={`Ver detalles de ${vehicle.brand} ${vehicle.model}`}>
+        <Link className="vehicle-hero__visual" to={`/vehiculo/${vehicle.id}`} aria-label={`Ver detalles de ${vehicle.brand} ${vehicle.model}`}>
           <span className="vehicle-hero__backdrop" aria-hidden="true">{vehicle.brand}</span>
           <img
             src={heroImage?.src ?? vehicle.image}

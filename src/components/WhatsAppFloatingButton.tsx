@@ -7,7 +7,7 @@ const genericMessage = "Hola, estoy interesado en recibir información sobre un 
 
 export function WhatsAppFloatingButton() {
   const { pathname } = useLocation();
-  const detailMatch = matchPath("/vehicle/:id", pathname);
+  const detailMatch = matchPath("/vehiculo/:id", pathname);
   const vehicle = detailMatch?.params.id
     ? vehicles.find((item) => item.id === detailMatch.params.id)
     : undefined;

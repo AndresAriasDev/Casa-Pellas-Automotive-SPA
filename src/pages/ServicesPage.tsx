@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import hydraulicJack from "../assets/icons/gato-hidraulico.png";
 import "./NotFoundPage.css";
 
-export function ServicesPage({ onInitialReady }: { onInitialReady?: () => void }) {
+export function ServicesPage({ onInitialReady, message = "Estamos trabajando para ofrecerte nuestros servicios muy pronto." }: { onInitialReady?: () => void; message?: string }) {
   useEffect(() => {
     onInitialReady?.();
   }, [onInitialReady]);
@@ -13,7 +13,7 @@ export function ServicesPage({ onInitialReady }: { onInitialReady?: () => void }
       <div className="not-found-page__content">
         <img src={hydraulicJack} alt="" aria-hidden="true" />
         <h1>Página en mantenimiento</h1>
-        <p>Estamos trabajando para ofrecerte nuestros servicios muy pronto.</p>
+        <p>{message}</p>
         <Link className="not-found-page__action" to="/">Volver al inicio</Link>
       </div>
     </main>

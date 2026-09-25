@@ -34,8 +34,16 @@ function RouteTitle() {
       document.title = "Servicios | Casa Pellas";
       return;
     }
+    if (pathname === "/terminos-y-condiciones") {
+      document.title = "Términos y condiciones | Casa Pellas";
+      return;
+    }
+    if (pathname === "/politica-de-privacidad") {
+      document.title = "Política de privacidad | Casa Pellas";
+      return;
+    }
 
-    const detailMatch = matchPath("/vehicle/:id", pathname);
+    const detailMatch = matchPath("/vehiculo/:id", pathname);
     const vehicle = detailMatch?.params.id
       ? vehicles.find((item) => item.id === detailMatch.params.id)
       : undefined;
@@ -82,9 +90,11 @@ function App() {
 
       <Suspense fallback={null}>
         <Routes>
-          <Route path="/vehicle/:id" element={<VehicleDetailPage currency={currency} onInitialReady={handleInitialReady} />} />
+          <Route path="/vehiculo/:id" element={<VehicleDetailPage currency={currency} onInitialReady={handleInitialReady} />} />
           <Route path="/contacto" element={<ContactPage onInitialReady={handleInitialReady} />} />
           <Route path="/servicios" element={<ServicesPage onInitialReady={handleInitialReady} />} />
+          <Route path="/terminos-y-condiciones" element={<ServicesPage onInitialReady={handleInitialReady} message="Estamos trabajando para ofrecerte esta información muy pronto." />} />
+          <Route path="/politica-de-privacidad" element={<ServicesPage onInitialReady={handleInitialReady} message="Estamos trabajando para ofrecerte esta información muy pronto." />} />
           <Route path="/" element={<CatalogPage currency={currency} onInitialReady={handleInitialReady} />} />
           <Route path="*" element={<NotFoundPage onInitialReady={handleInitialReady} />} />
         </Routes>
