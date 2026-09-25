@@ -116,10 +116,6 @@
   padding: 0;
 }
 
-.site-footer__categories li + li {
-  margin-top: var(--space-3);
-}
-
 .site-footer__secondary {
   display: flex;
   justify-content: space-between;
