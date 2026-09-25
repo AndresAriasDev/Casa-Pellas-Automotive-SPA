@@ -63,7 +63,8 @@ export function VehicleCard({
           aria-label={`Ver detalles de ${vehicle.brand} ${vehicle.model}`}
           onClick={() => onViewDetails(vehicle.id)}
         >
-          Ver detalles <span aria-hidden="true">↗</span>
+          <span>Ver detalles</span>
+          <span className="vehicle-card__cta-icon" aria-hidden="true" />
         </button>
       </div>
     </article>

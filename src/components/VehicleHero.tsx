@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { Vehicle } from "../types/vehicle";
 import type { Currency } from "../types/currency";
@@ -12,6 +12,7 @@ interface VehicleHeroProps {
 
 export function VehicleHero({ vehicles, currency }: VehicleHeroProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
   const featured = vehicles.filter((vehicle) => vehicle.featured);
   const index = activeIndex % Math.max(featured.length, 1);
   const vehicle = featured[index];
@@ -24,7 +25,22 @@ export function VehicleHero({ vehicles, currency }: VehicleHeroProps) {
   };
 
   return (
-    <section className="vehicle-hero" aria-label="Vehículos destacados" aria-roledescription="carrusel">
+    <section className="vehicle-hero" aria-label="Vehículos destacados" aria-roledescription="carrusel"
+      onTouchStart={(event) => {
+        const touch = event.touches[0];
+        if (touch) touchStart.current = { x: touch.clientX, y: touch.clientY };
+      }}
+      onTouchEnd={(event) => {
+        const start = touchStart.current;
+        const touch = event.changedTouches[0];
+        touchStart.current = null;
+        if (!start || !touch) return;
+        const distanceX = touch.clientX - start.x;
+        const distanceY = touch.clientY - start.y;
+        if (Math.abs(distanceX) < 40 || Math.abs(distanceX) <= Math.abs(distanceY)) return;
+        changeSlide(distanceX < 0 ? 1 : -1);
+      }}
+    >
       <div className="vehicle-hero__slide" key={vehicle.id}>
         <div className="vehicle-hero__intro">
           <p className="vehicle-hero__eyebrow">{vehicle.brand} · {vehicle.year}</p>

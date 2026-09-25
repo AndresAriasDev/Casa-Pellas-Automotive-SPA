@@ -11,6 +11,8 @@
     linear-gradient(120deg, var(--color-primary-dark), color-mix(in srgb, var(--color-primary-dark) 60%, var(--color-text)));
 }
 
+.vehicle-hero { touch-action: pan-y; }
+
 .vehicle-hero::before {
   content: "";
   position: absolute;
@@ -243,7 +245,7 @@
 
 @media (max-width: 600px) {
   .vehicle-hero { padding-bottom: var(--space-5); }
-  .vehicle-hero__slide { position: relative; grid-template-columns: minmax(0, 1fr); min-height: 0; gap: 0; padding-block: var(--space-4) var(--space-2); }
+  .vehicle-hero__slide { position: relative; grid-template-columns: minmax(0, 1fr); min-height: 370px; gap: 0; padding-block: var(--space-4) var(--space-2); }
   .vehicle-hero__visual { grid-row: 1; grid-column: 1; aspect-ratio: 1.8; }
   .vehicle-hero__intro { grid-row: 2; margin-top: calc(-1 * var(--space-2)); }
   .vehicle-hero__visual img { max-height: 230px; }
@@ -268,6 +270,7 @@
   .vehicle-hero .vehicle-hero__price { margin-top: var(--space-1); font-size: clamp(1rem, 4vw, 1.25rem); }
   .vehicle-hero .vehicle-hero__currency { position: absolute; width: 1px; height: 1px; padding: 0; margin: 0; border: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .vehicle-hero__bottom { flex-wrap: wrap; margin-top: calc(-1 * var(--space-5)); }
+  .vehicle-hero .vehicle-hero__arrow { display: none; }
   .vehicle-hero__dots button { width: 36px; }
 }
 

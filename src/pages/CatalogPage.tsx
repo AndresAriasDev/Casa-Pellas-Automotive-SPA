@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { VehicleCard } from "../components/VehicleCard";
 import { VehicleHero } from "../components/VehicleHero";
 import { VehicleFilters } from "../components/VehicleFilters";
@@ -22,8 +22,25 @@ export function CatalogPage({ currency, onInitialReady }: { currency: Currency; 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [reloadKey, setReloadKey] = useState(0);
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   const navigate = useNavigate();
+  useEffect(() => {
+    const requestedCategory = searchParams.get("category");
+    const validCategories: VehicleCategory[] = ["SUV", "Sedán", "Pickup", "Hatchback", "Comercial"];
+    if (requestedCategory && validCategories.includes(requestedCategory as VehicleCategory)) {
+      setCategory(requestedCategory as VehicleCategory);
+    }
+    if (location.hash === "#catalog-filters") {
+      window.requestAnimationFrame(() => {
+        document.getElementById("catalog-filters")?.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          block: "start",
+        });
+      });
+    }
+  }, [location.hash, searchParams]);
   useEffect(() => {
     if (!isLoading) onInitialReady?.();
   }, [isLoading, onInitialReady]);

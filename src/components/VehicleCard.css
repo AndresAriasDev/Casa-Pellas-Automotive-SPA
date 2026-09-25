@@ -7,7 +7,6 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
-  box-shadow: var(--shadow-sm);
   transition: border-color 180ms ease;
 }
 
@@ -53,9 +52,9 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  width: 96px;
+  width: 112px;
   max-width: calc(100% - var(--space-8));
-  height: 32px;
+  height: 36px;
   color: var(--color-primary-dark);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -137,6 +136,15 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   transition: background-color 180ms ease, color 180ms ease;
+}
+
+.vehicle-card__cta-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  background: currentColor;
+  mask: url("../assets/icons/vehicle/key-square.svg") center / contain no-repeat;
+  -webkit-mask: url("../assets/icons/vehicle/key-square.svg") center / contain no-repeat;
 }
 
 .vehicle-card__cta:hover {

@@ -54,7 +54,7 @@ export function VehicleFilters({
   }, []);
 
   return (
-    <section className="catalog-filters" aria-label="Filtros de vehículos">
+    <section className="catalog-filters" id="catalog-filters" aria-label="Filtros de vehículos">
       <div className="catalog-filters__toolbar">
         <h1 className="catalog-filters__title">Encuentra tu vehículo</h1>
         <details className="catalog-filters__help" ref={helpRef}>
