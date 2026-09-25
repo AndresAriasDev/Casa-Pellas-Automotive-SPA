@@ -1,19 +1,105 @@
-.vehicle-detail-skeleton { padding-bottom: var(--space-16); }
-.vehicle-detail-skeleton__block { position: relative; overflow: hidden; border-radius: var(--radius-sm); background: var(--color-surface-muted); }
-.vehicle-detail-skeleton__block::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 20%, color-mix(in srgb, var(--color-surface) 45%, transparent), transparent 80%); transform: translateX(-100%); animation: detail-skeleton-shimmer 1.8s ease-in-out infinite; }
-.vehicle-detail-skeleton__brand { width: 90px; height: 18px; margin: 0 auto; }
-.vehicle-detail-skeleton__title { width: min(65%, 380px); height: clamp(2.75rem, 6.6vw, 4.95rem); margin: var(--space-3) auto 0; }
-.vehicle-detail-skeleton__back { width: 180px; height: 44px; margin-block: var(--space-6); border-radius: var(--radius-full); }
-.vehicle-detail-skeleton__image { aspect-ratio: 4 / 3; border-radius: var(--radius-xl); }
-.vehicle-detail-skeleton__colors { display: flex; justify-content: center; gap: var(--space-3); padding: var(--space-5); }
-.vehicle-detail-skeleton__colors span { width: 32px; height: 32px; border-radius: var(--radius-full); }
-.vehicle-detail-skeleton__line { width: 65%; height: 18px; }
-.vehicle-detail-skeleton__price { width: 80%; height: 44px; }
-.vehicle-detail-skeleton__specs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5); }
-.vehicle-detail-skeleton__specs > div { display: grid; gap: var(--space-3); padding-block: var(--space-3); }
-.vehicle-detail-skeleton__specs .vehicle-detail-skeleton__line:last-child { width: 85%; }
-.vehicle-detail-skeleton__cta { height: 48px; border-radius: var(--radius-full); }
-@keyframes detail-skeleton-shimmer { to { transform: translateX(100%); } }
+.vehicle-detail-skeleton {
+    padding-bottom: var(--space-16);
+}
+
+.vehicle-detail-skeleton__block {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-muted);
+}
+
+.vehicle-detail-skeleton__block::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        100deg,
+        transparent 20%,
+        color-mix(in srgb, var(--color-surface) 45%, transparent),
+        transparent 80%
+    );
+    transform: translateX(-100%);
+    animation: detail-skeleton-shimmer 1.8s ease-in-out infinite;
+}
+
+.vehicle-detail-skeleton__brand {
+    width: 90px;
+    height: 18px;
+    margin: 0 auto;
+}
+
+.vehicle-detail-skeleton__title {
+    width: min(65%, 380px);
+    height: clamp(2.75rem, 6.6vw, 4.95rem);
+    margin: var(--space-3) auto 0;
+}
+
+.vehicle-detail-skeleton__back {
+    width: 180px;
+    height: 44px;
+    margin-block: var(--space-6);
+    border-radius: var(--radius-full);
+}
+
+.vehicle-detail-skeleton__image {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-xl);
+}
+
+.vehicle-detail-skeleton__colors {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-5);
+}
+
+.vehicle-detail-skeleton__colors span {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+}
+
+.vehicle-detail-skeleton__line {
+    width: 65%;
+    height: 18px;
+}
+
+.vehicle-detail-skeleton__price {
+    width: 80%;
+    height: 44px;
+}
+
+.vehicle-detail-skeleton__specs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+}
+
+.vehicle-detail-skeleton__specs > div {
+    display: grid;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+}
+
+.vehicle-detail-skeleton__specs .vehicle-detail-skeleton__line:last-child {
+    width: 85%;
+}
+
+.vehicle-detail-skeleton__cta {
+    height: 48px;
+    border-radius: var(--radius-full);
+}
+
+@keyframes detail-skeleton-shimmer {
+    to {
+        transform: translateX(100%);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .vehicle-detail-skeleton__block::after { animation: none; display: none; }
+    .vehicle-detail-skeleton__block::after {
+        animation: none;
+        display: none;
+    }
 }

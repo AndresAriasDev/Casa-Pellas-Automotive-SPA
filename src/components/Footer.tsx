@@ -68,7 +68,7 @@ export function Footer() {
       <div className="site-footer__bottom">
         <div className="site-footer__legal">
         <p>
-          © 2026 Casa Pellas. Todos los derechos reservados.
+          © 2026 Casa Pellas.
           <span className="site-footer__separator" aria-hidden="true"> | </span>
           Desarrollado y diseñado por AndresAriasDev
         </p>
