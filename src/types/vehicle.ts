@@ -2,6 +2,18 @@ export type VehicleCategory = "SUV" | "Sedán" | "Pickup" | "Hatchback" | "Comer
 
 export type FuelType = "Gasolina" | "Diésel" | "Híbrido" | "Eléctrico";
 
+export type Transmission =
+  | "Automática"
+  | "Manual"
+  | "Mecánico"
+  | "Automático FULL"
+  | "Mecánico AMB 4x4"
+  | "Mecánico DC 4x4"
+  | "Mecánico CS 4x4"
+  | "Automático WIDE TREAD"
+  | "Automático DC FULL"
+  | "Automático GR SPORT";
+
 export interface VehicleImage {
   src: string;
   alt: string;
@@ -34,7 +46,7 @@ export interface Vehicle {
   priceFrom: number;
   priceTo?: number;
   fuelType?: FuelType;
-  transmissions: ("Automática" | "Manual")[];
+  transmissions: Transmission[];
   seats?: number;
   engine?: string;
   description: string;
