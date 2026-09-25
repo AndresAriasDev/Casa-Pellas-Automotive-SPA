@@ -370,6 +370,7 @@ html:has(.vehicle-detail #vehicle-request) {
 }
 .vehicle-detail__form [aria-invalid="true"] { border-color: var(--color-error); }
 .vehicle-detail__form [role="alert"] { margin-top: var(--space-2); color: var(--color-error); font-size: var(--font-size-xs); }
+.vehicle-detail__form .vehicle-request__submission-error { grid-column: 1 / -1; margin: 0; }
 .vehicle-detail__form [role="status"] { color: var(--color-success); font-size: var(--font-size-sm); }
 .vehicle-detail__form input,
 .vehicle-detail__form select,

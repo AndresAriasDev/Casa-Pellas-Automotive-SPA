@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { branches, purchaseTimes, requestFields, validateVehicleRequest } from "../utils/validateVehicleRequest";
 import type { RequestErrors, RequestField, VehicleRequestFormData } from "../utils/validateVehicleRequest";
+import { submitVehicleLead } from "../services/leadSubmissionService";
 
 interface VehicleRequestFormProps {
   vehicleId: string;
   model?: string;
+  vehicleName: string;
+  transmission: string;
 }
 
 function RequestHelp({ label, text }: { label: string; text: string }) {
@@ -50,6 +53,8 @@ const initialForm: VehicleRequestFormData = {
 export function VehicleRequestForm({
   vehicleId,
   model,
+  vehicleName,
+  transmission,
 }: VehicleRequestFormProps) {
   const [form, setForm] = useState<VehicleRequestFormData>({
     ...initialForm,
@@ -61,6 +66,7 @@ export function VehicleRequestForm({
   const [submitting, setSubmitting] = useState(false);
   const submittingRef = useRef(false);
   const [closing, setClosing] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
   const successDialog = useRef<HTMLDialogElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -105,9 +111,10 @@ export function VehicleRequestForm({
   const handleChange = (field: keyof VehicleRequestFormData, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
     setSubmitted(false);
+    setSubmissionError(null);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (submittingRef.current) return;
     const nextErrors = validateVehicleRequest(form);
@@ -120,11 +127,25 @@ export function VehicleRequestForm({
     }
     submittingRef.current = true;
     setSubmitting(true);
+    setSubmissionError(null);
     try {
-      console.log("Vehicle request submitted:", form);
+      await submitVehicleLead({
+        solicitud: form.requestType,
+        vehiculo: vehicleName,
+        transmision: transmission,
+        nombres: form.name.trim(),
+        apellidos: form.lastName.trim(),
+        telefono: `${form.phonePrefix} ${form.phone.trim()}`,
+        correo: form.email.trim(),
+        cedula: form.identityDocument.trim(),
+        intencionCompra: form.purchaseTime,
+        sucursal: form.branch,
+      });
       setSubmitted(true);
       setForm({ ...initialForm, vehicleId });
       setTouched({});
+    } catch {
+      setSubmissionError("No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo nuevamente.");
     } finally {
       submittingRef.current = false;
       setSubmitting(false);
@@ -240,6 +261,7 @@ export function VehicleRequestForm({
           <span className="vehicle-request__submit-label" aria-hidden={submitting ? true : undefined}>Enviar solicitud</span>
           {submitting && <span className="vehicle-request__submit-spinner" aria-hidden="true" />}
         </button>
+        {submissionError && <p className="vehicle-request__submission-error" role="alert">{submissionError}</p>}
 
       </fieldset>
       <dialog

@@ -5,6 +5,7 @@ import { branches, type Branch } from "../data/branches";
 import { vehicles } from "../data/vehicles";
 import type { ContactRequest } from "../types/contact";
 import { type ContactField, validateContactRequest } from "../utils/validateContactRequest";
+import { submitContactLead } from "../services/leadSubmissionService";
 import "../components/PageBanner.css";
 import "./ContactPage.css";
 
@@ -41,6 +42,7 @@ export function ContactPage({ onInitialReady }: { onInitialReady?: () => void })
   const [touched, setTouched] = useState<Partial<Record<ContactField, boolean>>>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
   const mapElement = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
   const submitButton = useRef<HTMLButtonElement>(null);
@@ -98,6 +100,7 @@ export function ContactPage({ onInitialReady }: { onInitialReady?: () => void })
   const update = <Field extends keyof ContactRequest>(field: Field, value: ContactRequest[Field]) => {
     setForm((current) => ({ ...current, [field]: value }));
     setSubmitted(false);
+    setSubmissionError(null);
   };
   const fieldProps = (field: ContactField, id: string) => ({
     required: true,
@@ -126,11 +129,25 @@ export function ContactPage({ onInitialReady }: { onInitialReady?: () => void })
     }
     submittingRef.current = true;
     setSubmitting(true);
+    setSubmissionError(null);
     try {
-      await new Promise<void>((resolve) => window.setTimeout(resolve, 450));
+      const branch = branches.find((item) => item.id === form.branchId);
+      const vehicle = vehicles.find((item) => item.id === form.vehicleId);
+      await submitContactLead({
+        sucursal: branch?.name ?? "",
+        vehiculo: vehicle ? `${vehicle.brand} ${vehicle.model}` : "",
+        transmision: form.transmission,
+        nombres: form.name.trim(),
+        apellidos: form.lastName.trim(),
+        telefono: `${form.phonePrefix} ${form.phone.trim()}`,
+        correo: form.email.trim(),
+        mensaje: form.message.trim(),
+      });
       setForm(initialForm);
       setTouched({});
       setSubmitted(true);
+    } catch {
+      setSubmissionError("No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo nuevamente.");
     } finally {
       submittingRef.current = false;
       setSubmitting(false);
@@ -226,6 +243,7 @@ export function ContactPage({ onInitialReady }: { onInitialReady?: () => void })
                 <span className="contact-page__submit-label" aria-hidden={submitting ? true : undefined}>Enviar solicitud</span>
                 {submitting && <span className="contact-page__submit-spinner" aria-hidden="true" />}
               </button>
+              {submissionError && <p className="contact-page__submission-error" role="alert">{submissionError}</p>}
             </form>
             <dialog
               ref={successDialog}

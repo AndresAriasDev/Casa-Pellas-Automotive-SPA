@@ -216,7 +216,13 @@ useEffect(() => {
               </div>
             </div>
             <div className="vehicle-detail__form">
-              <VehicleRequestForm key={vehicle.id} vehicleId={vehicle.id} model={vehicle.model} />
+              <VehicleRequestForm
+                key={vehicle.id}
+                vehicleId={vehicle.id}
+                model={vehicle.model}
+                vehicleName={`${vehicle.brand} ${vehicle.model}`}
+                transmission={vehicle.transmissions.join(" / ")}
+              />
             </div>
           </div>
         </section>

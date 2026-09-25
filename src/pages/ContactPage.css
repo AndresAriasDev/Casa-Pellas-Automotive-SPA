@@ -49,6 +49,7 @@
 .contact-page__phone:has([aria-invalid="true"]) { border-color: var(--color-error); }
 .contact-page__phone:has([aria-invalid="true"]):focus-within { box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-error) 20%, transparent); }
 .contact-page__error { margin: var(--space-2) 0 0; color: var(--color-error); font-size: var(--font-size-xs); }
+.contact-page__submission-error { grid-column: 1 / -1; margin: 0; color: var(--color-error); font-size: var(--font-size-xs); }
 .contact-page__note { margin: var(--space-2) 0 0; font-size: var(--font-size-xs); }
 .contact-page__form-card button { min-height: 48px; border: 0; border-radius: var(--radius-md); background: var(--color-primary); color: var(--color-surface); font-weight: var(--font-weight-semibold); }
 .contact-page__form-card button:hover { background: var(--color-primary-dark); }
