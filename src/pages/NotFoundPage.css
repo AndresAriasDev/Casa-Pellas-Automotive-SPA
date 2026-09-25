@@ -15,9 +15,11 @@
 .not-found-page img {
   width: min(100%, 520px);
   height: auto;
-  max-height: 42svh;
+  max-height: 30svh;
   object-fit: contain;
 }
+
+.services-page img { width: min(100%, 440px); }
 
 .not-found-page h1 {
   margin: var(--space-6) 0 var(--space-3);
@@ -57,5 +59,6 @@
     padding-block: var(--space-10) var(--space-12);
   }
 
-  .not-found-page img { width: min(100%, 360px); max-height: 36svh; }
+  .not-found-page img { width: min(100%, 360px); max-height: 30svh; }
+  .services-page img { width: min(100%, 300px); }
 }

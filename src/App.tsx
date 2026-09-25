@@ -11,6 +11,7 @@ import { CatalogPage } from "./pages/CatalogPage";
 import { ContactPage } from "./pages/ContactPage";
 import { WhatsAppFloatingButton } from "./components/WhatsAppFloatingButton";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { ServicesPage } from "./pages/ServicesPage";
 import { vehicles } from "./data/vehicles";
 
 const defaultTitle = "Toyota | Casa Pellas";
@@ -26,6 +27,10 @@ function RouteTitle() {
     }
     if (pathname === "/contacto") {
       document.title = "Contacto | Casa Pellas";
+      return;
+    }
+    if (pathname === "/servicios") {
+      document.title = "Servicios | Casa Pellas";
       return;
     }
 
@@ -77,6 +82,7 @@ function App() {
       <Routes>
         <Route path="/vehicle/:id" element={<VehicleDetailPage currency={currency} onInitialReady={handleInitialReady} />} />
         <Route path="/contacto" element={<ContactPage onInitialReady={handleInitialReady} />} />
+        <Route path="/servicios" element={<ServicesPage onInitialReady={handleInitialReady} />} />
         <Route path="/" element={<CatalogPage currency={currency} onInitialReady={handleInitialReady} />} />
         <Route path="*" element={<NotFoundPage onInitialReady={handleInitialReady} />} />
       </Routes>

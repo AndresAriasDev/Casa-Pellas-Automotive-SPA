@@ -126,7 +126,7 @@ export function Header({ currency, onCurrencyChange }: HeaderProps) {
               <NavLink to="/" end>Vehículos</NavLink>
             </li>
             <li>
-              <a href="#servicios">Servicios</a>
+              <NavLink to="/servicios">Servicios</NavLink>
             </li>
             <li>
               <NavLink to="/contacto">Contacto</NavLink>
