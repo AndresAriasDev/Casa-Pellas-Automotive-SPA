@@ -226,6 +226,10 @@
   border-radius: 16px;
 }
 
+.catalog-loading-page {
+  width: 100%;
+}
+
 .catalog-empty h2 {
   margin: 0 0 8px;
   color: var(--color-primary);
@@ -277,53 +281,18 @@
 .catalog-loading__hero {
   min-height: 440px;
   padding-block: calc(var(--space-24) + var(--space-8)) var(--space-8);
-  background: var(--color-primary-dark);
+  color: var(--color-surface);
+  background:
+    radial-gradient(ellipse at 53% 43%, color-mix(in srgb, var(--color-primary) 65%, transparent), transparent 62%),
+    linear-gradient(120deg, var(--color-primary-dark), color-mix(in srgb, var(--color-primary-dark) 60%, var(--color-text)));
 }
 
-.catalog-loading__hero-content {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr) minmax(0, 0.9fr);
-  align-items: center;
-  gap: var(--space-5);
-  width: 90%;
-  min-height: 440px;
-  margin-inline: auto;
-}
-
-.catalog-loading__copy {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.catalog-loading__copy span,
-.catalog-loading__copy strong,
-.catalog-loading__copy i,
-.catalog-loading__vehicle,
-.catalog-loading__price,
 .catalog-loading__filters,
 .catalog-loading__result,
 .catalog-loading__cards > div {
   display: block;
   border-radius: var(--radius-md);
   background: var(--color-surface-muted);
-}
-
-.catalog-loading__copy span,
-.catalog-loading__copy i {
-  width: 72%;
-  height: 20px;
-}
-
-.catalog-loading__copy strong {
-  height: 56px;
-}
-
-.catalog-loading__vehicle {
-  aspect-ratio: 1.35;
-}
-
-.catalog-loading__price {
-  height: 128px;
 }
 
 .catalog-loading__content {
@@ -432,21 +401,6 @@
     padding-top: var(--space-2);
   }
 
-  .catalog-loading__hero-content {
-    grid-template-columns: minmax(0, 1fr);
-    min-height: 370px;
-  }
-
-  .catalog-loading__copy,
-  .catalog-loading__price {
-    display: none;
-  }
-
-  .catalog-loading__vehicle {
-    width: 90%;
-    margin-inline: auto;
-  }
-
   .catalog-loading__content {
     width: min(100% - 24px, 1180px);
     padding: 32px 0 48px;
@@ -464,7 +418,4 @@
     padding-bottom: var(--space-5);
   }
 
-  .catalog-loading__hero-content {
-    min-height: 0;
-  }
 }
