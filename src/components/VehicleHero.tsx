@@ -28,21 +28,21 @@ export function VehicleHero({ vehicles, currency }: VehicleHeroProps) {
       <div className="vehicle-hero__slide" key={vehicle.id}>
         <div className="vehicle-hero__intro">
           <p className="vehicle-hero__eyebrow">{vehicle.brand} · {vehicle.year}</p>
-          <h2>{vehicle.model}</h2>
+          <h2><Link className="vehicle-hero__title-link" to={`/vehicle/${vehicle.id}`}>{vehicle.model}</Link></h2>
           <p className="vehicle-hero__description">{vehicle.description}</p>
           <Link className="vehicle-hero__cta" to={`/vehicle/${vehicle.id}`}>
             Explorar vehículo <span aria-hidden="true">↗</span>
           </Link>
         </div>
 
-        <div className="vehicle-hero__visual">
+        <Link className="vehicle-hero__visual" to={`/vehicle/${vehicle.id}`} aria-label={`Ver detalles de ${vehicle.brand} ${vehicle.model}`}>
           <span className="vehicle-hero__backdrop" aria-hidden="true">{vehicle.brand}</span>
           <img
             src={heroImage?.src ?? vehicle.image}
             alt={heroImage?.alt ?? `${vehicle.brand} ${vehicle.model}`}
             fetchPriority="high"
           />
-        </div>
+        </Link>
 
         <div className="vehicle-hero__details">
           <p className="vehicle-hero__price-label">
