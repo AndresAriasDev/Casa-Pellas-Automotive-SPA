@@ -2,11 +2,7 @@ import { vehicles } from "../data/vehicles";
 import type { Vehicle } from "../types/vehicle";
 
 export const getVehicles = (): Promise<Vehicle[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(vehicles);
-    }, 500);
-  });
+  return Promise.resolve(vehicles);
 };
 
 export const getVehicleById = (id: string): Promise<Vehicle | undefined> => {
