@@ -25,7 +25,7 @@ export function WhatsAppFloatingButton() {
       aria-label="Hablar con un asesor por WhatsApp"
     >
       <span>¿Deseas hablar con un asesor?</span>
-      <img src={whatsappIcon} alt="" aria-hidden="true" />
+      <img src={whatsappIcon} alt="" aria-hidden="true" decoding="async" />
     </a>
   );
 }

@@ -168,7 +168,7 @@ useEffect(() => {
           <Link className="vehicle-detail__back" to="/">← Volver al catálogo</Link>
           <div className="vehicle-detail__hero-grid">
             <div className="vehicle-detail__visual">
-              <div className="vehicle-detail__main-image"><img src={mainImage.src} alt={mainImage.alt} fetchPriority="high" /></div>
+              <div className="vehicle-detail__main-image"><img src={mainImage.src} alt={mainImage.alt} fetchPriority="high" decoding="async" /></div>
               <VehicleColorSelector colors={colors} model={vehicle.model} selectedId={selectedColor?.id ?? null} onSelect={setSelectedColorId} />
             </div>
             <div className="vehicle-detail__summary">

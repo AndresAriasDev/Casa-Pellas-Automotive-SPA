@@ -14,6 +14,7 @@ export function VehicleVideo({ video }: { video: NonNullable<VehicleMedia["video
   const [muted, setMuted] = useState(true);
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const formatTime = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
   const togglePlayback = () => {
     const player = videoRef.current;
@@ -40,6 +41,18 @@ export function VehicleVideo({ video }: { video: NonNullable<VehicleMedia["video
       document.removeEventListener("keydown", closeOnEscape);
     };
   }, [volumeOpen]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || videoLoaded) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setVideoLoaded(true);
+      observer.disconnect();
+    }, { rootMargin: "400px 0px" });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [videoLoaded]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -72,6 +85,7 @@ export function VehicleVideo({ video }: { video: NonNullable<VehicleMedia["video
       if (nearby && !reducedMotion.matches) schedule();
     };
     const syncPlayback = () => {
+      if (!videoLoaded) return;
       if (!visible || document.hidden) {
         player.pause();
         return;
@@ -114,7 +128,7 @@ export function VehicleVideo({ video }: { video: NonNullable<VehicleMedia["video
       document.removeEventListener("visibilitychange", syncPlayback);
       player.pause();
     };
-  }, [video.src]);
+  }, [video.src, videoLoaded]);
 
   if (!video.src) return null;
   return (
@@ -122,7 +136,7 @@ export function VehicleVideo({ video }: { video: NonNullable<VehicleMedia["video
       <h2 id="vehicle-video-title">{video.title}</h2>
       <div ref={stageRef} className="vehicle-video__stage">
       <div className="vehicle-video__player">
-      <video ref={videoRef} key={video.src} loop muted playsInline preload="metadata" poster={video.poster} aria-label={video.title} src={video.src}
+      <video ref={videoRef} key={video.src} loop muted playsInline preload="metadata" poster={video.poster} aria-label={video.title} src={videoLoaded ? video.src : undefined}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onVolumeChange={(event) => {

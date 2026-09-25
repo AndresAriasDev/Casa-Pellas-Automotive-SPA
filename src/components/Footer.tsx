@@ -12,6 +12,8 @@ export function Footer() {
           <img
             src={logoCasaPellas}
             alt="Casa Pellas"
+            loading="lazy"
+            decoding="async"
           />
           <a className="site-footer__address" href="https://maps.app.goo.gl/7VuYJ9n7PgVdpfxN8" target="_blank" rel="noopener noreferrer">
             <address>Managua, Nicaragua<br />De la rotonda el Güegüense 350 mts. al sur</address>
