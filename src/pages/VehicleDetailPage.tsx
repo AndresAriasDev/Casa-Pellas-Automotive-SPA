@@ -12,6 +12,7 @@ import { VehicleColorSelector } from "../components/VehicleColorSelector";
 import { VehicleSpecifications } from "../components/VehicleSpecifications";
 import { VehicleVideo } from "../components/VehicleVideo";
 import { VehicleDetailSkeleton } from "../components/VehicleDetailSkeleton";
+import { NotFoundPage } from "./NotFoundPage";
 import "./VehicleDetailPage.css";
 import "../components/PageBanner.css";
 import toyotaRequestBackground from "../assets/brand/img-fondo-toyota.webp";
@@ -125,15 +126,7 @@ useEffect(() => {
     return <VehicleDetailSkeleton />;
   }
 
-  if (error || !vehicle) {
-    return (
-      <main className="vehicle-detail vehicle-detail__state">
-        <h1>{error ? "No pudimos cargar el vehículo" : "Vehículo no encontrado"}</h1>
-        <p role={error ? "alert" : "status"}>{error ? "Vuelve al catálogo e inténtalo nuevamente." : "El vehículo solicitado no está disponible."}</p>
-        <Link className="vehicle-detail__button" to="/">Volver al catálogo</Link>
-      </main>
-    );
-  }
+  if (error || !vehicle) return <NotFoundPage onInitialReady={onInitialReady} />;
 
   const images = (vehicle.media?.gallery ?? [])
     .filter((image, index, all) => image.src && all.findIndex((item) => item.src === image.src) === index);
