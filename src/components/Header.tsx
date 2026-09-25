@@ -94,7 +94,7 @@ export function Header({ currency, onCurrencyChange }: HeaderProps) {
   return (
     <header
       ref={headerRef}
-      className={`site-header${pathname === "/" ? " site-header--overlay" : ""}${isHidden && !menuOpen ? " site-header--hidden" : ""}${menuOpen ? " site-header--menu-open" : ""}`}
+      className={`site-header${pathname === "/" || pathname === "/contacto" ? " site-header--overlay" : ""}${isHidden && !menuOpen ? " site-header--hidden" : ""}${menuOpen ? " site-header--menu-open" : ""}`}
       onFocusCapture={() => setIsHidden(false)}
       onBlurCapture={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) setMenuOpen(false);

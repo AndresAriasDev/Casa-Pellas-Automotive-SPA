@@ -5,6 +5,7 @@ import { branches, type Branch } from "../data/branches";
 import { vehicles } from "../data/vehicles";
 import type { ContactRequest } from "../types/contact";
 import { type ContactField, validateContactRequest } from "../utils/validateContactRequest";
+import "../components/PageBanner.css";
 import "./ContactPage.css";
 
 const initialForm: ContactRequest = {
@@ -138,6 +139,11 @@ export function ContactPage({ onInitialReady }: { onInitialReady?: () => void })
 
   return (
     <main className="contact-page">
+      <section className="page-banner" aria-labelledby="contact-page-title">
+        <div className="page-banner__container">
+          <h1 id="contact-page-title">Contacto</h1>
+        </div>
+      </section>
       <div className="contact-page__container">
         <div className="contact-page__layout">
           <section className="contact-page__map" id="contact-map" aria-label="Mapa de sucursales">
@@ -148,7 +154,7 @@ export function ContactPage({ onInitialReady }: { onInitialReady?: () => void })
             />
           </section>
           <section className="contact-page__form-card" aria-labelledby="contact-form-title">
-            <h1 id="contact-form-title">Contacta sucursal Casa Pellas</h1>
+            <h2 id="contact-form-title">Contacta sucursal Casa Pellas</h2>
             <form noValidate onSubmit={submit}>
               <div className="contact-page__field contact-page__field--full">
                 <label htmlFor="contact-branchId">Sucursal</label>

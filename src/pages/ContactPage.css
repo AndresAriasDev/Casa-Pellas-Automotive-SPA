@@ -1,5 +1,5 @@
-.contact-page { padding: var(--space-20) 0; background: var(--color-background); }
-.contact-page__container { width: min(var(--container-max-width), calc(100% - 2 * var(--container-padding))); margin: 0 auto; }
+.contact-page { padding: 0; background: var(--color-background); }
+.contact-page__container { width: min(var(--container-max-width), calc(100% - 2 * var(--container-padding))); margin: 0 auto; padding-block: var(--space-20); }
 .contact-page__layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden; border-radius: var(--radius-xl); background: var(--color-surface); box-shadow: var(--shadow-md); }
 
 .contact-page__map { min-width: 0; padding: var(--space-6); background: var(--color-surface); }
@@ -18,7 +18,7 @@
 .contact-page__map .leaflet-marker-icon:focus-visible { outline: 3px solid var(--color-primary-dark); outline-offset: 3px; }
 
 .contact-page__form-card { min-width: 0; padding: clamp(var(--space-6), 4vw, var(--space-12)); }
-.contact-page__form-card h1 { margin: 0 0 var(--space-6); color: var(--color-primary-dark); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: var(--line-height-tight); }
+.contact-page__form-card h2 { margin: 0 0 var(--space-6); color: var(--color-primary-dark); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: var(--line-height-tight); }
 .contact-page__form-card form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5); }
 .contact-page__field { min-width: 0; }
 .contact-page__field--full, .contact-page__form-card button, .contact-page__success { grid-column: 1 / -1; }
@@ -66,7 +66,7 @@
 .contact-page__success-dialog button { min-width: 112px; padding: var(--space-3) var(--space-5); }
 
 @media (max-width: 760px) {
-  .contact-page { padding-block: var(--space-10) var(--space-16); }
+  .contact-page__container { padding-block: var(--space-10) var(--space-10); }
   .contact-page__layout { grid-template-columns: minmax(0, 1fr); }
   .contact-page__map { padding: var(--space-4); }
   .contact-page__map-canvas { min-height: 360px; }

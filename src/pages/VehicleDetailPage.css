@@ -26,40 +26,8 @@ html:has(.vehicle-detail #vehicle-request) {
 .vehicle-detail__eyebrow { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-primary); }
 .vehicle-detail :focus-visible:not(:where(.vehicle-detail__related-track *)) { outline: 2px solid var(--color-primary); outline-offset: 4px; }
 
-.site-header:has(~ .vehicle-detail .vehicle-detail__banner) {
-  position: fixed;
-  inset-inline: 0;
-  margin: 0 auto;
-}
-
-.vehicle-detail__banner {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding-block: calc(var(--space-24) + var(--space-16)) var(--space-16);
-  text-align: center;
-  background:
-    radial-gradient(ellipse at 53% 43%, color-mix(in srgb, var(--color-primary) 65%, transparent), transparent 62%),
-    linear-gradient(120deg, var(--color-primary-dark), color-mix(in srgb, var(--color-primary-dark) 60%, var(--color-text)));
-}
-.vehicle-detail__banner::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 15% -20% 20% 25%;
-  border: 1px solid color-mix(in srgb, var(--color-surface) 9%, transparent);
-  border-radius: 50%;
-  transform: rotate(-18deg);
-  pointer-events: none;
-}
 .vehicle-detail__banner .vehicle-detail__eyebrow { color: var(--color-border-strong); }
-.vehicle-detail__banner h1 {
-  margin-top: var(--space-3);
-  color: var(--color-surface);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  overflow-wrap: anywhere;
-  text-transform: uppercase;
-}
+.vehicle-detail__banner h1 { margin-top: var(--space-3); }
 .vehicle-detail__back { display: inline-flex; align-items: center; min-height: 44px; margin-block: var(--space-6); padding: var(--space-2) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-full); background: var(--color-surface); color: var(--color-primary); text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); }
 .vehicle-detail__back:hover { text-decoration: underline; text-underline-offset: 4px; }
 .vehicle-detail__hero-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--space-10); align-items: start; }
@@ -462,7 +430,6 @@ html:has(.vehicle-detail #vehicle-request) {
 }
   .vehicle-detail__hero-grid, .vehicle-detail__description, .vehicle-colors { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
   .vehicle-detail__body { gap: var(--space-10); padding-block: var(--space-10); }
-  .vehicle-detail__banner { padding-block: calc(var(--space-16) + var(--space-16)) var(--space-8); }
   .vehicle-detail__button { width: 100%; }
   .vehicle-detail__actions {
     grid-template-columns: minmax(0, 1fr);

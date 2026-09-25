@@ -13,6 +13,7 @@ import { VehicleSpecifications } from "../components/VehicleSpecifications";
 import { VehicleVideo } from "../components/VehicleVideo";
 import { VehicleDetailSkeleton } from "../components/VehicleDetailSkeleton";
 import "./VehicleDetailPage.css";
+import "../components/PageBanner.css";
 import toyotaRequestBackground from "../assets/brand/img-fondo-toyota.webp";
 import toyotaRequestSlogan from "../assets/brand/no-es-un-carro-es-toyota.webp";
 
@@ -152,8 +153,8 @@ useEffect(() => {
   return (
     <main className="vehicle-detail">
       <section className="vehicle-detail__overview" aria-labelledby="vehicle-detail-title">
-        <div className="vehicle-detail__banner">
-          <div className="vehicle-detail__container">
+        <div className="page-banner vehicle-detail__banner">
+          <div className="page-banner__container vehicle-detail__container">
             <p className="vehicle-detail__eyebrow">{vehicle.brand}</p>
             <h1 id="vehicle-detail-title">{vehicle.model}</h1>
           </div>

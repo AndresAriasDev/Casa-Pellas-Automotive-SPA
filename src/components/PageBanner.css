@@ -1,0 +1,47 @@
+.site-header:has(~ .vehicle-detail .page-banner) {
+  position: fixed;
+  inset-inline: 0;
+  margin: 0 auto;
+}
+
+.page-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: calc(var(--space-24) + var(--space-16)) var(--space-16);
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 53% 43%, color-mix(in srgb, var(--color-primary) 65%, transparent), transparent 62%),
+    linear-gradient(120deg, var(--color-primary-dark), color-mix(in srgb, var(--color-primary-dark) 60%, var(--color-text)));
+}
+
+.page-banner::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 15% -20% 20% 25%;
+  border: 1px solid color-mix(in srgb, var(--color-surface) 9%, transparent);
+  border-radius: 50%;
+  transform: rotate(-18deg);
+  pointer-events: none;
+}
+
+.page-banner__container {
+  width: min(var(--container-max-width), calc(100% - 2 * var(--container-padding)));
+  margin-inline: auto;
+}
+
+.page-banner h1 {
+  margin: 0;
+  color: var(--color-surface);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .page-banner { padding-block: calc(var(--space-16) + var(--space-16)) var(--space-8); }
+}

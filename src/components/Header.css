@@ -164,11 +164,10 @@
 @media (max-width: 760px) {
   .site-header {
     top: var(--space-3);
+    z-index: 1100;
     width: calc(100% - var(--space-6));
     margin-top: var(--space-3);
   }
-
-  .site-header--menu-open { z-index: 1100; }
 
   .site-header__surface {
     grid-template-columns: minmax(0, 1fr) auto;
